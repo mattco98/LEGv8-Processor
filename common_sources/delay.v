@@ -2,12 +2,12 @@
 `include "constants.vh"
 
 module delay #(parameter DELAY_NS = 0) (
-    input in,
-    output reg out
+    input clk,
+    output reg clk_delayed
 );
 
-    initial out <= in;
+    initial clk_delayed <= clk;
     
-    always @* out <= #DELAY_NS in;
+    always @* clk_delayed <= #DELAY_NS clk;
 
 endmodule
