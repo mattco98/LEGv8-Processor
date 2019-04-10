@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
-`include "helpers.vh"
 `include "files.vh"
 
 module instruction_mem_tb;
@@ -20,7 +19,7 @@ module instruction_mem_tb;
     initial begin
         repeat(64) begin // 1024 is too much console spam
             @(negedge clk)
-            #1 `assert(instruction, address / 4);
+            #1 assert(instruction == address / 4);
  
             address = address + 4;
         end
