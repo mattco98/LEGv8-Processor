@@ -1,6 +1,6 @@
-`define assert(condition, messageIfFailed) \
-    if (condition == 0) begin \
-        $display("~~~ ASSERTION FAILED in %m: %s ~~~", messageIfFailed); \
+`define assert(to_test, value) \
+    if (to_test != value) begin \
+        $display("~~~ ASSERTION FAILED in %m => Expected: %d, Actual: %d ~~~", to_test, value); \
     end else begin \
         $display("Assertion passed in %m"); \
     end 
