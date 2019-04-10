@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
+`include "helpers.vh"
 
 module control_tb;
 
@@ -17,6 +18,8 @@ module control_tb;
     assign opcode = instruction[31:21];
     
     initial begin
+        `TB_BEGIN
+        
         // LDUR X9, [X22, #64]
         instruction <= 32'hF84402C9;
         #(`CYCLE / 2) assert(combined_signals == 10'b0110110000) else $error("[0] combined_signals: %b", combined_signals);
@@ -66,6 +69,8 @@ module control_tb;
         instruction <= 32'h8A0A02C9;
         #(`CYCLE / 2) assert(combined_signals == 10'b0000010010) else $error("[9] combined_signals: %b", combined_signals);
         #(`CYCLE / 2);
+        
+        `TB_END
         
         $finish;
     end

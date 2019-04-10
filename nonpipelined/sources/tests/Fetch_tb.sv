@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
+`include "helpers.vh"
 
 module Fetch_tb;
 
@@ -19,6 +20,8 @@ module Fetch_tb;
     Fetch UUT(.*);
     
     initial begin
+        `TB_BEGIN
+        
         reset <= 0;
         pc_src <= 0;
         branch_target <= 0;
@@ -39,6 +42,7 @@ module Fetch_tb;
         #`CYCLE;
         assert(cur_pc == 'd24);
         
+        `TB_END
         $finish;
     end
 
