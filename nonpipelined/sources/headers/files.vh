@@ -4,3 +4,4 @@
 `define REGISTERS_FILE   {`FILE_BASE, "registers"}
 
 `define INSTRUCTION_MEM_TB_INSTR_FILE {`FILE_BASE, "instruction_mem_tb_instructions"}
+`define REGISTER_MEM_TB_REGISTER_FILE {`FILE_BASE, "register_mem_tb_registers"}
