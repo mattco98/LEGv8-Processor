@@ -60,6 +60,16 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
         .out(read_reg2)
     );
     
+    // write_data modifications
+    reg [`WORD-1:0] write_data_modified;
+    
+    always @* begin
+        casex(opcode)
+            `LDURB: write_data_modified <= {56'b0, write_data[7:0]};
+            default: write_data_modified <= write_data;
+        endcase
+    end
+    
     register_memory #(PATH) REG_MEM(
         .read_clk(read_clk),
         .write_clk(write_clk),
