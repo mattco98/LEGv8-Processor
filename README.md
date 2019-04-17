@@ -72,9 +72,9 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] ORR
 - [ ] ORRI
 - [x] STUR
-- [ ] STURB
-- [ ] STURH
-- [ ] STURW
+- [x] STURB
+- [x] STURH
+- [x] STURW
 - [ ] STXR
 - [x] SUB
 - [ ] SUBI

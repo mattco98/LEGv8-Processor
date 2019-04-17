@@ -87,6 +87,7 @@ module datapath;
     Memory #(`RAM_FILE_DIVISION) MEMORY(
         .read_clk(memory_clk),
         .write_clk(memory_clk),
+        .opcode(opcode),
         .branch(branch),
         .branch_if_zero(branch_if_zero),
         .branch_if_not_zero(branch_if_not_zero),

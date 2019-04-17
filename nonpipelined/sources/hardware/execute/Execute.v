@@ -48,12 +48,14 @@ module Execute(
         .out(alu_input_b)
     );
     
+    reg [`WORD-1:0] alu_result_temp;
+    
     alu MAIN_ALU(
         .a(read_data1),
         .b(alu_input_b),
         .alu_control(alu_control),
         .zero(zero),
-        .result(alu_result)
+        .result(alu_result_temp)
     );
 
 endmodule

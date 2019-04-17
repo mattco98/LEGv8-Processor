@@ -32,4 +32,11 @@
 `define LDURSW  11'b10111000100
 `define ORR     11'b10101010000
 `define STUR    11'b11111000000
+`define STURB   11'b00111000000
+`define STURH   11'b01111000000
+`define STURW   11'b10111000000
 `define SUB     11'b11001011000
+
+
+
+
