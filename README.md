@@ -62,8 +62,8 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] EORI
 - [x] LDUR
 - [x] LDURB
-- [ ] LDURH
-- [ ] LDURSW
+- [x] LDURH
+- [x] LDURSW
 - [ ] LDXR
 - [ ] LSL
 - [ ] LSR

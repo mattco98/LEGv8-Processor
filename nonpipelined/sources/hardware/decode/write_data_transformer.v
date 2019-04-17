@@ -10,7 +10,9 @@ module write_data_transformer(
 
     always @* begin
         casex(opcode)
-            `LDURB: write_data_out <= {{(`WORD-8){1'b0}}, write_data_in[7:0]};
+            `LDURB:  write_data_out <= {{(`WORD - 8){1'b0}},  write_data_in[7:0]};
+            `LDURH:  write_data_out <= {{(`WORD - 16){1'b0}}, write_data_in[15:0]};
+            `LDURSW: write_data_out <= {{(`WORD - 32){1'b0}}, write_data_in[31:0]};
             default: write_data_out <= write_data_in;  
         endcase
     end

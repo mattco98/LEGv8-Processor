@@ -20,14 +20,16 @@
 /////////////
 // OPCODES //
 /////////////
-`define ADD   11'b10001011000
-`define AND   11'b10001010000
-`define B     11'b000101XXXXX
-`define CBZ   11'b10110100XXX
-`define CBNZ  11'b10110101XXX
-`define EOR   11'b11001010000
-`define LDUR  11'b11111000010
-`define LDURB 11'b00111000010
-`define ORR   11'b10101010000
-`define STUR  11'b11111000000
-`define SUB   11'b11001011000
+`define ADD     11'b10001011000
+`define AND     11'b10001010000
+`define B       11'b000101XXXXX
+`define CBZ     11'b10110100XXX
+`define CBNZ    11'b10110101XXX
+`define EOR     11'b11001010000
+`define LDUR    11'b11111000010
+`define LDURB   11'b00111000010
+`define LDURH   11'b01111000010
+`define LDURSW  11'b10111000100
+`define ORR     11'b10101010000
+`define STUR    11'b11111000000
+`define SUB     11'b11001011000
