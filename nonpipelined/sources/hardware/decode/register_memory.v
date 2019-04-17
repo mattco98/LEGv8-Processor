@@ -11,16 +11,16 @@ module register_memory #(parameter PATH=`REGISTERS_FILE)(
     output reg [`WORD-1:0] read_data1, read_data2
 );
     
-    reg [31:0] register_memory [`WORD-1:0];
+    reg [`WORD-1:0] register_mem [`WORD-1:0];
     
-    initial $readmemb(PATH, register_memory);
+    initial $readmemb(PATH, register_mem);
     
     always @(posedge read_clk) begin
-        read_data1 <= register_memory[read_reg1];
-        read_data2 <= register_memory[read_reg2];
+        read_data1 <= register_mem[read_reg1];
+        read_data2 <= register_mem[read_reg2];
     end
     
     always @(posedge write_clk) 
-        if (reg_write) register_memory[write_reg] <= write_data;
+        if (reg_write) register_mem[write_reg] <= write_data;
     
 endmodule

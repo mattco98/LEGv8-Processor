@@ -51,7 +51,7 @@ module datapath;
         .pc(pc)
     );
     
-    Decode #(`RAM_FILE_DIVISION) DECODE(
+    Decode DECODE(
         .read_clk(decode_read_clk),
         .write_clk(decode_write_clk), 
         .instruction(instruction), 
@@ -83,10 +83,10 @@ module datapath;
         .alu_result(alu_result)
     );
     
-    Memory MEMORY(
+    Memory #(`RAM_FILE_DIVISION) MEMORY(
         .read_clk(memory_clk),
         .write_clk(memory_clk),
-        .uncondbranch(uncondbranch),
+        .uncondbranch(unconditional_branch),
         .branch(branch),
         .zero(zero),
         .mem_read(mem_read),
@@ -111,7 +111,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 50);
+        #(`CYCLE * 20);
         
         $finish;
     end

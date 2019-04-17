@@ -2,7 +2,7 @@
 `include "files.vh"
 `include "constants.vh"
 
-module data_memory #(parameter PATH=`RAM_FILE)(
+module data_memory #(parameter PATH=`RAM_FILE, parameter SIZE=1024)(
     input  [`WORD-1:0] address,
                        write_data,
     input  mem_read,
@@ -12,7 +12,7 @@ module data_memory #(parameter PATH=`RAM_FILE)(
     output reg [`WORD-1:0] read_data
 );
 
-    reg [`WORD-1:0] data_mem [`WORD-1:0];
+    reg [`WORD-1:0] data_mem [SIZE-1:0];
     
     initial $readmemb(PATH, data_mem);
     
