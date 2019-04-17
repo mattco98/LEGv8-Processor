@@ -61,9 +61,9 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
     );
     
     // write_data modifications
-    reg [`WORD-1:0] write_data_new;
+    wire [`WORD-1:0] write_data_new;
     
-    write_data_transform WRITE_DATA_TRANSFORMER(write_data, opcode, write_data_new);
+    write_data_transformer WRITE_DATA_TRANSFORMER(write_data, opcode, write_data_new);
     
     register_memory #(PATH) REG_MEM(
         .read_clk(read_clk),
