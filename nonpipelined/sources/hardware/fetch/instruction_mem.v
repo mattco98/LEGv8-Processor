@@ -2,7 +2,7 @@
 `include "files.vh"
 `include "constants.vh"
 
-module instruction_mem #(parameter SIZE=1024, parameter PATH=`INSTRUCTION_FILE)(
+module instruction_mem #(parameter PATH=`INSTRUCTION_FILE, parameter SIZE=1024) (
     input clk,
     input [`WORD-1:0] address,
     output reg [`INSTR_LEN-1:0] instruction

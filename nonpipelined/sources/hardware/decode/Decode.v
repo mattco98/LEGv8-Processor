@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
+`include "files.vh"
 
-module Decode(
+module Decode #(parameter PATH=`REGISTERS_FILE) (
     input read_clk,
     input write_clk,
     input [`INSTR_LEN-1:0] instruction,
@@ -57,7 +58,7 @@ module Decode(
         .out(read_reg2)
     );
     
-    register_memory REG_MEM(
+    register_memory #(PATH) REG_MEM(
         .read_clk(read_clk),
         .write_clk(write_clk),
         .reg_write(reg_write),

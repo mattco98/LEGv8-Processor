@@ -5,3 +5,6 @@
 
 `define INSTRUCTION_MEM_TB_INSTR_FILE {`FILE_BASE, "instruction_mem_tb_instructions"}
 `define REGISTER_MEM_TB_REGISTER_FILE {`FILE_BASE, "register_mem_tb_registers"}
+
+`define INSTRUCTION_FILE_DIVISION {`FILE_BASE, "instructions_division"}
+`define RAM_FILE_DIVISION         {`FILE_BASE, "ram_division"}

@@ -1,8 +1,9 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
+`include "files.vh"
 
 
-module Memory(
+module Memory #(parameter PATH=`RAM_FILE) (
     input  read_clk,
            write_clk,
            uncondbranch,
@@ -18,7 +19,7 @@ module Memory(
 
     assign pc_src = uncondbranch || (branch && zero);
     
-    data_memory DATA_MEM(
+    data_memory #(PATH) DATA_MEM(
         .read_clk(read_clk),
         .write_clk(write_clk),
         .address(address),
