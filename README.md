@@ -58,7 +58,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] BR
 - [ ] CBNZ
 - [ ] CBZ
-- [ ] EOR
+- [x] EOR
 - [ ] EORI
 - [x] LDUR
 - [ ] LDURB

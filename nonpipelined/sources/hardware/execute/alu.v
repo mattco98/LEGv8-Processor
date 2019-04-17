@@ -19,6 +19,7 @@ module alu(
             `ALU_SUBTRACT: result <= a - b;
             `ALU_PASS_B:   result <= b;
             `ALU_NOR:      result <= ~(a | b);
+            `ALU_XOR:      result <= a ^ b;
         endcase
     end
     
