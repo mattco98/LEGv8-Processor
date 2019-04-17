@@ -6,8 +6,9 @@
 module Memory #(parameter PATH=`RAM_FILE) (
     input  read_clk,
            write_clk,
-           uncondbranch,
            branch,
+           branch_if_zero,
+           branch_if_not_zero,
            zero,
            mem_read,
            mem_write,
@@ -17,7 +18,7 @@ module Memory #(parameter PATH=`RAM_FILE) (
     output [`WORD-1:0] read_data
 );
 
-    assign pc_src = uncondbranch || (branch && zero);
+    assign pc_src = branch || (branch_if_zero && zero) || (branch_if_not_zero && ~zero);
     
     data_memory #(PATH) DATA_MEM(
         .read_clk(read_clk),

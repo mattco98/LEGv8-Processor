@@ -56,8 +56,8 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] B.cond
 - [ ] BL
 - [ ] BR
-- [ ] CBNZ
-- [ ] CBZ
+- [x] CBNZ
+- [x] CBZ
 - [x] EOR
 - [ ] EORI
 - [x] LDUR

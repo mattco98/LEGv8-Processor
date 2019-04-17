@@ -28,7 +28,7 @@ module datapath;
     wire [10:0] opcode;
     wire [`WORD-1:0] read_data1, read_data2;
     
-    wire unconditional_branch, branch, mem_read, mem_write, mem_to_reg, alu_src, reg_write;
+    wire branch, branch_if_zero, branch_if_not_zero, mem_read, mem_write, mem_to_reg, alu_src, reg_write;
     wire [1:0] alu_op;
     
     // Execute wires
@@ -60,8 +60,9 @@ module datapath;
         .opcode(opcode),
         .read_data1(read_data1),
         .read_data2(read_data2),
-        .unconditional_branch(unconditional_branch),
         .branch(branch),
+        .branch_if_zero(branch_if_zero),
+        .branch_if_not_zero(branch_if_not_zero),
         .mem_read(mem_read),
         .mem_to_reg(mem_to_reg),
         .alu_op(alu_op),
@@ -86,8 +87,9 @@ module datapath;
     Memory #(`RAM_FILE_DIVISION) MEMORY(
         .read_clk(memory_clk),
         .write_clk(memory_clk),
-        .uncondbranch(unconditional_branch),
         .branch(branch),
+        .branch_if_zero(branch_if_zero),
+        .branch_if_not_zero(branch_if_not_zero),
         .zero(zero),
         .mem_read(mem_read),
         .mem_write(mem_write),

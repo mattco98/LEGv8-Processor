@@ -8,8 +8,9 @@ module control(
     output reg mem_write,
     output reg mem_to_reg,
     output reg reg_write,
+    output reg branch_if_zero,
     output reg branch,
-    output reg unconditional_branch,
+    output reg branch_if_not_zero,
     output reg alu_src,
     output reg [1:0] alu_op
 );
@@ -17,17 +18,19 @@ module control(
     always @* begin
         casex(opcode)
             `ADD, `SUB, `AND, `ORR:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch, unconditional_branch, alu_src, alu_op} <= 'b0000100010;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op} <= 'b00001000010;
             `LDUR:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch, unconditional_branch, alu_src, alu_op} <= 'b0101100100;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op} <= 'b01011000100;
             `STUR:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch, unconditional_branch, alu_src, alu_op} <= 'b1010000100;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op} <= 'b10100000100;
             `CBZ:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch, unconditional_branch, alu_src, alu_op} <= 'b1000010001;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op} <= 'b10000100001;
+            `CBNZ:
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op} <= 'b10000001001;
             `B:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch, unconditional_branch, alu_src, alu_op} <= 'b0000010001;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op} <= 'b00000100001;
             default:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch, unconditional_branch, alu_src, alu_op} <= 'b0000000000;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op} <= 'b00000000000;
         endcase
     end  
     
