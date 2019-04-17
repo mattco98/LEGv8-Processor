@@ -45,7 +45,7 @@ There are three projects in this repository:
 Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`, `LDUR`, `STUR`, `B`, `CBZ`. The goal is to eventually support all of the instructions referenced in the [LEGv8 Reference Guide](resources/LEGv8_Reference.pdf). These are as follows:
 
 - [x] ADD
-- [ ] ADDI
+- [x] ADDI
 - [ ] ADDIS
 - [ ] ADDS
 - [x] AND

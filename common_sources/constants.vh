@@ -21,6 +21,7 @@
 // OPCODES //
 /////////////
 `define ADD     11'b10001011000
+`define ADDI    11'b1001000100X
 `define AND     11'b10001010000
 `define B       11'b000101XXXXX
 `define CBZ     11'b10110100XXX
