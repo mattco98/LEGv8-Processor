@@ -1,4 +1,4 @@
-`define FILE_BASE        "C:/Users/matth/Documents/Programming/LEGV8-Processor/ARM-Processor/nonpipelined/sources/data/"
+`define FILE_BASE        "/home/matthew/Programming/LEGV8-Processor/LEGv8-Processor/nonpipelined/sources/data/"
 `define INSTRUCTION_FILE {`FILE_BASE, "instructions"}
 `define RAM_FILE         {`FILE_BASE, "ram"}
 `define REGISTERS_FILE   {`FILE_BASE, "registers"}
