@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
-module mux #(parameter SIZE=4) (
-    input [SIZE-1:0] a,
-    input [SIZE-1:0] b,
-    input control,
+module mux #(parameter SIZE=`WORD) (
+    input  [SIZE-1:0] a,
+    input  [SIZE-1:0] b,
+    input  control,
     output [SIZE-1:0] out
 );
 
