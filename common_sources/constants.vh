@@ -6,6 +6,16 @@
 
 `define CYCLE 10
 
+//////////////////////
+// ALU Control Bits //
+//////////////////////
+`define ALU_AND      4'b0000
+`define ALU_OR       4'b0001
+`define ALU_ADD      4'b0010
+`define ALU_SUBTRACT 4'b0110
+`define ALU_PASS_B   4'b0111
+`define ALU_NOR      4'b1100
+
 /////////////
 // OPCODES //
 /////////////
