@@ -49,7 +49,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] ADDIS
 - [ ] ADDS
 - [x] AND
-- [ ] ANDI
+- [x] ANDI
 - [ ] ANDIS
 - [ ] ANDS
 - [x] B
@@ -59,7 +59,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] CBNZ
 - [x] CBZ
 - [x] EOR
-- [ ] EORI
+- [x] EORI
 - [x] LDUR
 - [x] LDURB
 - [x] LDURH
@@ -70,14 +70,14 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] MOVK
 - [ ] MOVZ
 - [x] ORR
-- [ ] ORRI
+- [x] ORRI
 - [x] STUR
 - [x] STURB
 - [x] STURH
 - [x] STURW
 - [ ] STXR
 - [x] SUB
-- [ ] SUBI
+- [x] SUBI
 - [ ] SUBIS
 - [ ] SUBS
 - [ ] FADDS
