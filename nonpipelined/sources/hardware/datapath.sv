@@ -34,6 +34,7 @@ module datapath;
     // Execute wires
     wire [`WORD-1:0] branch_alu_result, alu_result;
     wire zero;
+    wire [31:0] sreg;
     
     // Memory wires
     wire [`WORD-1:0] read_data;
@@ -72,6 +73,8 @@ module datapath;
     );
     
     Execute EXECUTE(
+        .clk(memory_clk), // TODO: Rename clk signals
+        .reset(reset),
         .pc(pc),
         .sign_extended_instr(extended_instruction),
         .read_data1(read_data1),
@@ -81,7 +84,8 @@ module datapath;
         .alu_src(alu_src),
         .branch_alu_result(branch_alu_result),
         .zero(zero),
-        .alu_result(alu_result)
+        .alu_result(alu_result),
+        .sreg(sreg)
     );
     
     Memory #(`RAM_FILE) MEMORY(

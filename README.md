@@ -105,4 +105,4 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 Other things that I would like to implement are:
 
 - [ ] Floating point registers
-- [ ] Status flag register
+- [ ] Status flag register (WIP)

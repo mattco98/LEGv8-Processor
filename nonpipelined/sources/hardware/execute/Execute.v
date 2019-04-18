@@ -2,6 +2,8 @@
 `include "constants.vh"
 
 module Execute(
+    input clk,
+          reset,
     input [`WORD-1:0] pc,
                       sign_extended_instr,
                       read_data1,
@@ -12,7 +14,8 @@ module Execute(
     
     output [`WORD-1:0] branch_alu_result,
                        alu_result,
-    output zero
+    output zero,
+    output [31:0] sreg
 );
 
     // Branch ALU
@@ -40,6 +43,7 @@ module Execute(
     
     // ALU
     wire [`WORD-1:0] alu_input_b;
+    wire negative, carry, overflow;
     
     mux #(`WORD) ALU_MUX(
         .a(read_data2),
@@ -52,8 +56,21 @@ module Execute(
         .a(read_data1),
         .b(alu_input_b),
         .alu_control(alu_control),
+        .negative(negative),
         .zero(zero),
+        .carry(carry),
+        .overflow(overflow),
         .result(alu_result)
+    );
+    
+    status_register SREG(
+        .clk(clk),
+        .reset(reset),
+        .negative(negative),
+        .zero(zero),
+        .carry(carry),
+        .overflow(overflow),
+        .sreg(sreg)
     );
 
 endmodule
