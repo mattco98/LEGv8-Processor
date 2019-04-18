@@ -28,12 +28,12 @@ module datapath;
     wire [10:0] opcode;
     wire [`WORD-1:0] read_data1, read_data2;
     
-    wire branch, branch_if_zero, branch_if_not_zero, mem_read, mem_write, mem_to_reg, alu_src, reg_write;
+    wire branch, branch_if_zero, branch_if_not_zero, mem_read, mem_write, mem_to_reg, alu_src, reg_write, update_sreg;
     wire [1:0] alu_op;
     
     // Execute wires
     wire [`WORD-1:0] branch_alu_result, alu_result;
-    wire zero;
+    wire zero, negative, overflow, carry;
     wire [31:0] sreg;
     
     // Memory wires
@@ -69,7 +69,8 @@ module datapath;
         .alu_op(alu_op),
         .mem_write(mem_write),
         .alu_src(alu_src),
-        .reg_write(reg_write)
+        .reg_write(reg_write),
+        .update_sreg(update_sreg)
     );
     
     Execute EXECUTE(
@@ -84,8 +85,12 @@ module datapath;
         .alu_src(alu_src),
         .branch_alu_result(branch_alu_result),
         .zero(zero),
+        .overflow(overflow),
+        .carry(carry),
+        .negative(negative),
         .alu_result(alu_result),
-        .sreg(sreg)
+        .sreg(sreg),
+        .update_sreg(update_sreg)
     );
     
     Memory #(`RAM_FILE) MEMORY(

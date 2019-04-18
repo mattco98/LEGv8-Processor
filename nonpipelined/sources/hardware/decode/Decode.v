@@ -20,6 +20,7 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
            mem_write,
            alu_src,
            reg_write,
+           update_sreg,
     output [1:0] alu_op
 );
 
@@ -48,7 +49,8 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
         .mem_write(mem_write),
         .alu_src(alu_src),
         .reg_write(reg_write),
-        .alu_op(alu_op)
+        .alu_op(alu_op),
+        .update_sreg(update_sreg)
     );
     
     wire [4:0] read_reg2;

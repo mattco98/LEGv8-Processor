@@ -10,11 +10,11 @@ module Execute(
                       read_data2,
     input [10:0] opcode,
     input [1:0] alu_op,
-    input alu_src,
+    input alu_src, update_sreg,
     
     output [`WORD-1:0] branch_alu_result,
                        alu_result,
-    output zero,
+    output zero, negative, overflow, carry,
     output [31:0] sreg
 );
 
@@ -43,7 +43,7 @@ module Execute(
     
     // ALU
     wire [`WORD-1:0] alu_input_b;
-    wire negative, carry, overflow;
+    wire negative_internal, zero_internal, carry_internal, overflow_internal;
     
     mux #(`WORD) ALU_MUX(
         .a(read_data2),
@@ -56,20 +56,25 @@ module Execute(
         .a(read_data1),
         .b(alu_input_b),
         .alu_control(alu_control),
-        .negative(negative),
-        .zero(zero),
-        .carry(carry),
-        .overflow(overflow),
+        .negative(negative_internal),
+        .zero(zero_internal),
+        .carry(carry_internal),
+        .overflow(overflow_internal),
         .result(alu_result)
     );
     
     status_register SREG(
         .clk(clk),
         .reset(reset),
-        .negative(negative),
-        .zero(zero),
-        .carry(carry),
-        .overflow(overflow),
+        .update_sreg(update_sreg),
+        .negative_in(negative_internal),
+        .zero_in(zero_internal),
+        .carry_in(carry_internal),
+        .overflow_in(overflow_internal),
+        .negative_out(negative),
+        .zero_out(zero),
+        .carry_out(carry),
+        .overflow_out(overflow),
         .sreg(sreg)
     );
 
