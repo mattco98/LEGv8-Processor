@@ -42,7 +42,7 @@ module datapath;
     // Writeback wires
     wire [`WORD-1:0] write_back;
     
-    Fetch #(`INSTRUCTION_FILE) FETCH(
+    Fetch #(`INSTRUCTION_FILE_DIVISION) FETCH(
         .clk(clk),
         .instr_mem_clk(instr_mem_clk), 
         .reset(reset),
@@ -93,7 +93,7 @@ module datapath;
         .update_sreg(update_sreg)
     );
     
-    Memory #(`RAM_FILE) MEMORY(
+    Memory #(`RAM_FILE_DIVISION) MEMORY(
         .read_clk(memory_clk),
         .write_clk(memory_clk),
         .opcode(opcode),
@@ -123,7 +123,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 3);
+        #(`CYCLE * 30);
         
         $finish;
     end

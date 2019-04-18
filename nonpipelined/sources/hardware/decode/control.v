@@ -27,11 +27,11 @@ module control(
             `STUR, `STURB, `STURH, `STURW:
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b101000001000;
             `CBZ:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b100001000010;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b100001000011;
             `CBNZ:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b100000010010;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b100000010011;
             `B:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000001000010;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000000100010;
             default:
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000000000000;
         endcase

@@ -16,7 +16,7 @@ module status_register(
     output [31:0] sreg
 );
 
-    reg [31:0] sreg_buffered;
+    wire [31:0] sreg_buffered;
     
     assign negative_out = sreg[31];
     assign zero_out = sreg[30];
@@ -30,35 +30,43 @@ module status_register(
         .Q(sreg)
     );
     
-    initial
-        sreg_buffered <= 32'b0;
+    assign sreg_buffered = reset ? 32'b0 : {
+        (negative_in ? 1'b1 : 1'b0),
+        (zero_in ? 1'b1 : 1'b0),
+        (carry_in ? 1'b1 : 1'b0),
+        (overflow_in ? 1'b1 : 1'b0),
+        {28{1'b0}}
+    };
     
-    always @(posedge clk or posedge reset) begin
-        if (update_sreg) begin
-            if (negative_out)
-                sreg_buffered = sreg_buffered | (1 << 31);
-            else
-                sreg_buffered = sreg_buffered & 32'h7FFFFFFF;
+//    initial
+//        sreg_buffered <= 32'b0;
+    
+//    always @(posedge clk or posedge reset) begin
+//        if (update_sreg && ~reset) begin
+//            if (negative_in)
+//                sreg_buffered = sreg_buffered | (1 << 31);
+//            else
+//                sreg_buffered = sreg_buffered & 32'h7FFFFFFF;
                 
-            if (zero_out)
-                sreg_buffered = sreg_buffered | (1 << 30);
-            else
-                sreg_buffered = sreg_buffered & 32'hBFFFFFFF;
+//            if (zero_in)
+//                sreg_buffered = sreg_buffered | (1 << 30);
+//            else
+//                sreg_buffered = sreg_buffered & 32'hBFFFFFFF;
                 
-            if (carry_out)
-                sreg_buffered = sreg_buffered | (1 << 29);
-            else
-                sreg_buffered = sreg_buffered & 32'hDFFFFFFF;
+//            if (carry_in)
+//                sreg_buffered = sreg_buffered | (1 << 29);
+//            else
+//                sreg_buffered = sreg_buffered & 32'hDFFFFFFF;
                 
-            if (overflow_out)
-                sreg_buffered = sreg_buffered | (1 << 28);
-            else
-                sreg_buffered = sreg_buffered & 32'hEFFFFFFF;
-        end
+//            if (overflow_in)
+//                sreg_buffered = sreg_buffered | (1 << 28);
+//            else
+//                sreg_buffered = sreg_buffered & 32'hEFFFFFFF;
+//        end
             
-        if (reset) 
-            sreg_buffered = 32'b0;
+//        if (reset) 
+//            sreg_buffered = 32'b0;
         
-    end
+//    end
 
 endmodule

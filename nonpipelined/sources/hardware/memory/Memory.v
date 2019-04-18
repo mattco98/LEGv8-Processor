@@ -20,6 +20,15 @@ module Memory #(parameter PATH=`RAM_FILE) (
 );
 
     reg [`WORD-1:0] write_data_new;
+    
+    branch_source BRANCH_SOURCE(
+        .opcode(opcode),
+        .zero(zero),
+        .branch(branch),
+        .branch_if_zero(branch_if_zero),
+        .branch_if_not_zero(branch_if_not_zero),
+        .branch_src(pc_src)
+    );
 
     assign pc_src = branch || (branch_if_zero && zero) || (branch_if_not_zero && ~zero);
     
