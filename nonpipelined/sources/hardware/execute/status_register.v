@@ -35,22 +35,22 @@ module status_register(
     
     always @(posedge clk or posedge reset) begin
         if (update_sreg) begin
-            if (negative)
+            if (negative_out)
                 sreg_buffered = sreg_buffered | (1 << 31);
             else
                 sreg_buffered = sreg_buffered & 32'h7FFFFFFF;
                 
-            if (zero)
+            if (zero_out)
                 sreg_buffered = sreg_buffered | (1 << 30);
             else
                 sreg_buffered = sreg_buffered & 32'hBFFFFFFF;
                 
-            if (carry)
+            if (carry_out)
                 sreg_buffered = sreg_buffered | (1 << 29);
             else
                 sreg_buffered = sreg_buffered & 32'hDFFFFFFF;
                 
-            if (overflow)
+            if (overflow_out)
                 sreg_buffered = sreg_buffered | (1 << 28);
             else
                 sreg_buffered = sreg_buffered & 32'hEFFFFFFF;
