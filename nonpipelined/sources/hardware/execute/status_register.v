@@ -23,7 +23,7 @@ module status_register(
     assign carry_out = sreg[29];
     assign overflow_out = sreg[28];
 
-    register STATUS_REG(
+    register #(32) STATUS_REG(
         .clk(clk),
         .reset(reset),
         .D(sreg_buffered),

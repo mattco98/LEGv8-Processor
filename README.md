@@ -46,12 +46,12 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 
 - [x] ADD
 - [x] ADDI
-- [ ] ADDIS
-- [ ] ADDS
+- [x] ADDIS
+- [x] ADDS
 - [x] AND
 - [x] ANDI
-- [ ] ANDIS
-- [ ] ANDS
+- [x] ANDIS
+- [x] ANDS
 - [x] B
 - [ ] B.cond
 - [ ] BL
@@ -78,8 +78,8 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] STXR
 - [x] SUB
 - [x] SUBI
-- [ ] SUBIS
-- [ ] SUBS
+- [x] SUBIS
+- [x] SUBS
 - [ ] FADDS
 - [ ] FADDD
 - [ ] FCMPS

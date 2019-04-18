@@ -22,8 +22,12 @@
 /////////////
 `define ADD     11'b10001011000
 `define ADDI    11'b1001000100X
+`define ADDS    11'b10101011000
+`define ADDIS   11'b1011000100X
 `define AND     11'b10001010000
 `define ANDI    11'b1001001000X
+`define ANDS    11'b11101010000
+`define ANDIS   11'b1111001000X
 `define B       11'b000101XXXXX
 `define CBZ     11'b10110100XXX
 `define CBNZ    11'b10110101XXX
@@ -41,6 +45,8 @@
 `define STURW   11'b10111000000
 `define SUB     11'b11001011000
 `define SUBI    11'b1101000100X
+`define SUBS    11'b11101011000
+`define SUBIS   11'b1111000100X
 
 
 

@@ -20,8 +20,12 @@ module control(
         casex(opcode)
             `ADD, `SUB, `AND, `ORR:
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010000100;
+            `ADDS, `ANDS, `SUBS:
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010000101;
             `ADDI, `ANDI, `EORI, `ORRI, `SUBI:
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010001100;
+            `ADDIS, `ANDIS, `SUBS:
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010001101;
             `LDUR, `LDURB, `LDURH, `LDURSW:
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b010110001000;
             `STUR, `STURB, `STURH, `STURW:

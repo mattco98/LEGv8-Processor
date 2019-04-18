@@ -4,8 +4,8 @@
 module register #(parameter SIZE=`WORD) (
     input clk,
     input reset,
-    input [`WORD-1:0] D,
-    output reg [`WORD-1:0] Q
+    input [SIZE-1:0] D,
+    output reg [SIZE-1:0] Q
 );
 
     initial Q <= `WORD'b0;
