@@ -27,7 +27,7 @@ There are three projects in this repository:
         - instr\_parse.v
         - control.v
         - mux.v
-	- write\_data\_transformer.v
+        - write\_data\_transformer.v
         - register\_memory.v
         - sign\_extender.v
     - Execute.v
@@ -36,9 +36,9 @@ There are three projects in this repository:
         - alu\_control.v
         - mux.v
         - alu.v
-	- status\_register.v
+        - status\_register.v
     - Memory.v
-	- branch\_source.v
+        - branch\_source.v
         - data\_memory.v
     - Writeback.v
         - mux.v
@@ -56,7 +56,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] ANDIS
 - [x] ANDS
 - [x] B
-- [x] B.cond (WIP)
+- [x] B.cond
 - [ ] BL
 - [ ] BR
 - [x] CBNZ
