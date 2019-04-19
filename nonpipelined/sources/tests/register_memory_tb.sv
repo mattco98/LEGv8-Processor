@@ -18,7 +18,7 @@ module register_memory_tb;
         .clk_delayed(write_clk)
     );
     
-    register_memory #(.PATH(`REGISTER_MEM_TB_REGISTER_FILE)) UUT(.*);
+    register_memory UUT(.*);
 
     initial begin
         `TB_BEGIN

@@ -10,7 +10,7 @@ module instruction_mem_tb;
     
     oscillator clk_gen(clk);
     
-    instruction_mem #(.PATH(`INSTRUCTION_MEM_TB_INSTR_FILE)) UUT(
+    instruction_mem UUT(
         .clk(clk),
         .address(address),
         .instruction(instruction)
