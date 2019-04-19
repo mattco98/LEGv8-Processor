@@ -80,6 +80,10 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] SUBI
 - [x] SUBIS
 - [x] SUBS
+- [ ] CMP
+- [ ] CMPI
+- [ ] LDA
+- [ ] MOV
 - [ ] FADDS
 - [ ] FADDD
 - [ ] FCMPS
