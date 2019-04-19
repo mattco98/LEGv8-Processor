@@ -19,8 +19,7 @@ module alu(
     assign result = buff[`WORD-1:0];
     assign zero = result == 0;
     assign negative = result < 0;
-    assign carry = is_signed ? 1'bZ : (buff[`WORD] ? 1 : 0);
-    //assign carry = (~is_signed && buff[`WORD]) ? 1'b1 : ((is_signed) ? 1'bZ : 1'b0);
+    assign carry = is_signed ? 0 : buff[`WORD];
 
     always @* begin
         overflow = 0;
@@ -47,8 +46,6 @@ module alu(
             `ALU_XOR:      
                 buff = a ^ b;
         endcase
-        
-        if (~is_signed) overflow = 1'bZ;
     end
     
 endmodule

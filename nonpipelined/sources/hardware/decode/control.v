@@ -8,9 +8,6 @@ module control(
     output reg mem_write,
     output reg mem_to_reg,
     output reg reg_write,
-    output reg branch_if_zero,
-    output reg branch,
-    output reg branch_if_not_zero,
     output reg alu_src,
     output reg [1:0] alu_op,
     output reg update_sreg,
@@ -27,6 +24,10 @@ module control(
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_1_1_10_0_000;
             `ADDIS, `ANDIS, `SUBS:
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_1_1_10_1_000;
+            `CMP:
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_0_0_10_1_000;
+            `CMPI:
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_0_1_10_1_000;
             `LDUR, `LDURB, `LDURH, `LDURSW:
                 {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_1_0_1_1_1_00_0_000;
             `STUR, `STURB, `STURH, `STURW:

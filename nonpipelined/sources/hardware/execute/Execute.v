@@ -14,8 +14,7 @@ module Execute(
     
     output [`WORD-1:0] branch_alu_result,
                        alu_result,
-    output zero, negative, overflow, carry,
-    output [31:0] sreg
+    output zero, negative, overflow, carry
 );
 
     // Branch ALU
@@ -74,8 +73,7 @@ module Execute(
         .negative_out(negative),
         .zero_out(zero),
         .carry_out(carry),
-        .overflow_out(overflow),
-        .sreg(sreg)
+        .overflow_out(overflow)
     );
 
 endmodule

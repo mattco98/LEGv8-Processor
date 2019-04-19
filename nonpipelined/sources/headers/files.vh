@@ -8,3 +8,6 @@
 
 `define INSTRUCTION_FILE_DIVISION {`FILE_BASE, "instructions_division"}
 `define RAM_FILE_DIVISION         {`FILE_BASE, "ram_division"}
+
+`define INSTRUCTION_FILE_CMP {`FILE_BASE, "instructions_simple_compare"}
+`define REGISTER_FILE_CMP         {`FILE_BASE, "registers_simple_compare"}

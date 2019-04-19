@@ -43,7 +43,7 @@ module datapath;
     // Writeback wires
     wire [`WORD-1:0] write_back;
     
-    Fetch #(`INSTRUCTION_FILE_DIVISION) FETCH(
+    Fetch #(`INSTRUCTION_FILE_CMP) FETCH(
         .clk(clk),
         .instr_mem_clk(instr_mem_clk), 
         .reset(reset),
@@ -53,7 +53,7 @@ module datapath;
         .pc(pc)
     );
     
-    Decode DECODE(
+    Decode #(`REGISTER_FILE_CMP) DECODE(
         .read_clk(decode_read_clk),
         .write_clk(decode_write_clk), 
         .instruction(instruction), 
@@ -88,7 +88,6 @@ module datapath;
         .carry(carry),
         .negative(negative),
         .alu_result(alu_result),
-        .sreg(sreg),
         .update_sreg(update_sreg)
     );
     
@@ -123,7 +122,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 30);
+        #(`CYCLE * 10);
         
         $finish;
     end
