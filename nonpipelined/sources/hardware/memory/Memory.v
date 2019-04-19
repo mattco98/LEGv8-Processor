@@ -17,6 +17,7 @@ module Memory #(parameter PATH=`RAM_FILE) (
                        write_data,
     input  [2:0] branch_op,
     input [10:0] opcode,
+    input [4:0] rt,
     output pc_src,
     output [`WORD-1:0] read_data
 );
@@ -29,6 +30,7 @@ module Memory #(parameter PATH=`RAM_FILE) (
         .carry(carry),
         .overflow(overflow),
         .branch_op(branch_op),
+        .conditional_branch(rt),
         .branch_src(pc_src)
     );
     
