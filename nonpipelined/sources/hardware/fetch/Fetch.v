@@ -29,7 +29,7 @@ module Fetch #(parameter PATH=`INSTRUCTION_FILE) (
         .out(new_pc)
     );
     
-    assign incremented_pc = pc + `WORD'd4;
+    assign incremented_pc = reset ? 0 : (pc + `WORD'd4);
     
     instruction_mem #(PATH) INSTR_MEM(
         .clk(instr_mem_clk),

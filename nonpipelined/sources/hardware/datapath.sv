@@ -120,7 +120,7 @@ module datapath;
     initial begin
         // Reset memory
         reset <= 1;
-        #`CYCLE;
+        #6;
         
         // Continue running
         reset <= 0;
