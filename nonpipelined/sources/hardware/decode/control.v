@@ -13,31 +13,34 @@ module control(
     output reg branch_if_not_zero,
     output reg alu_src,
     output reg [1:0] alu_op,
-    output reg update_sreg
+    output reg update_sreg,
+    output reg [2:0] branch_op // 000 => no branch, 001 => branch, 010 => branch_conditionally, 011 => branch_if_zero, 100 => branch_if_not_zero
 );
     
     always @* begin
         casex(opcode)
             `ADD, `SUB, `AND, `ORR:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010000100;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_1_0_10_0_000;
             `ADDS, `ANDS, `SUBS:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010000101;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_1_0_10_1_000;
             `ADDI, `ANDI, `EORI, `ORRI, `SUBI:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010001100;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_1_1_10_0_000;
             `ADDIS, `ANDIS, `SUBS:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000010001101;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_1_1_10_1_000;
             `LDUR, `LDURB, `LDURH, `LDURSW:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b010110001000;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_1_0_1_1_1_00_0_000;
             `STUR, `STURB, `STURH, `STURW:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b101000001000;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b1_0_1_0_0_1_00_0_000;
             `CBZ:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b100001000011;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b1_0_0_0_0_0_01_1_011;
             `CBNZ:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b100000010011;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b1_0_0_0_0_0_01_1_100;
             `B:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000000100010;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_0_0_01_0_001;
+            `BCOND:
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_0_0_01_0_010;
             default:
-                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, branch_if_zero, branch, branch_if_not_zero, alu_src, alu_op, update_sreg} <= 'b000000000000;
+                {readreg2_control, mem_read, mem_write, mem_to_reg, reg_write, alu_src, alu_op, update_sreg, branch_op} <= 'b0_0_0_0_0_0_00_0_000;
         endcase
     end  
     

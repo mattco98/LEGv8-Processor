@@ -6,14 +6,15 @@
 module Memory #(parameter PATH=`RAM_FILE) (
     input  read_clk,
            write_clk,
-           branch,
-           branch_if_zero,
-           branch_if_not_zero,
            zero,
+           negative,
+           overflow,
+           carry,
            mem_read,
            mem_write,
     input  [`WORD-1:0] address,
                        write_data,
+    input  [2:0] branch_op,
     input [10:0] opcode,
     output pc_src,
     output [`WORD-1:0] read_data
@@ -22,15 +23,13 @@ module Memory #(parameter PATH=`RAM_FILE) (
     reg [`WORD-1:0] write_data_new;
     
     branch_source BRANCH_SOURCE(
-        .opcode(opcode),
         .zero(zero),
-        .branch(branch),
-        .branch_if_zero(branch_if_zero),
-        .branch_if_not_zero(branch_if_not_zero),
+        .negative(negative),
+        .carry(carry),
+        .overflow(overflow),
+        .branch_op(branch_op),
         .branch_src(pc_src)
     );
-
-    assign pc_src = branch || (branch_if_zero && zero) || (branch_if_not_zero && ~zero);
     
     always @* begin
         casex(opcode)

@@ -29,6 +29,7 @@
 `define ANDS    11'b11101010000
 `define ANDIS   11'b1111001000X
 `define B       11'b000101XXXXX
+`define BCOND   11'b01010100XXX
 `define CBZ     11'b10110100XXX
 `define CBNZ    11'b10110101XXX
 `define EOR     11'b11001010000
@@ -48,6 +49,32 @@
 `define SUBS    11'b11101011000
 `define SUBIS   11'b1111000100X
 
+//////////////////////////////////
+// CONDITIONAL BRANCH RT VALUES //
+//////////////////////////////////
+`define BCOND_NV  5'b00000
+`define BCOND_EQ  5'b00001
+`define BCOND_NE  5'b00010
+`define BCOND_CS  5'b00011
+`define BCOND_LE  5'b00100
+`define BCOND_CC  5'b00101
+`define BCOND_MI  5'b00111
+`define BCOND_PL  5'b01000
+`define BCOND_VS  5'b01001
+`define BCOND_VC  5'b01010
+`define BCOND_HI  5'b01011
+`define BCOND_LS  5'b01100
+`define BCOND_GE  5'b01101
+`define BCOND_LT  5'b01110
+`define BCOND_GT  5'b01111
+`define BCOND_AL  5'b11111
 
-
+////////////////////////////
+// CONDITIONAL BRANCH OPS //
+////////////////////////////
+`define BCOND_OP_NONE    3'b000
+`define BCOND_OP_BRANCH  3'b001
+`define BCOND_OP_COND    3'b010
+`define BCOND_OP_ZERO    3'b011
+`define BCOND_OP_NZERO   3'b100
 

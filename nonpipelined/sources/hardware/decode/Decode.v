@@ -12,15 +12,13 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
     output [10:0] opcode,
     output [`WORD-1:0] read_data1, read_data2,
     
-    output branch,
-           branch_if_zero,
-           branch_if_not_zero,
-           mem_read,
+    output mem_read,
            mem_to_reg,
            mem_write,
            alu_src,
            reg_write,
            update_sreg,
+    output [2:0] branch_op,
     output [1:0] alu_op
 );
 
@@ -41,9 +39,7 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
     control CONTROL(
         .opcode(opcode),
         .readreg2_control(readreg2_control),
-        .branch(branch),
-        .branch_if_zero(branch_if_zero),
-        .branch_if_not_zero(branch_if_not_zero),
+        .branch_op(branch_op),
         .mem_read(mem_read),
         .mem_to_reg(mem_to_reg),
         .mem_write(mem_write),
