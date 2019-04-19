@@ -9,6 +9,7 @@ module data_memory #(parameter PATH=`RAM_FILE, parameter SIZE=1024)(
            mem_write,
            read_clk,
            write_clk,
+           reset,
     output reg [`WORD-1:0] read_data
 );
 
@@ -16,10 +17,10 @@ module data_memory #(parameter PATH=`RAM_FILE, parameter SIZE=1024)(
     
     initial $readmemb(PATH, data_mem);
     
-    always @(posedge read_clk)
-        read_data <= (mem_read ? data_mem[address / 8] : 64'bZ);
+    always @(posedge read_clk or posedge reset)
+        if (~reset) read_data <= (mem_read ? data_mem[address / 8] : 64'bZ);
         
-    always @(posedge write_clk)
-        if (mem_write) data_mem[address / 8] <= write_data;
+    always @(posedge write_clk or posedge reset)
+        if (~reset && mem_write) data_mem[address / 8] <= write_data;
 
 endmodule

@@ -56,6 +56,7 @@ module datapath;
     Decode #(`REGISTER_FILE_CMP) DECODE(
         .read_clk(decode_read_clk),
         .write_clk(decode_write_clk), 
+        .reset(reset),
         .instruction(instruction), 
         .write_data(write_back),
         .extended_instruction(extended_instruction),
@@ -94,6 +95,7 @@ module datapath;
     Memory #(`RAM_FILE_DIVISION) MEMORY(
         .read_clk(memory_clk),
         .write_clk(memory_clk),
+        .reset(reset),
         .opcode(opcode),
         .branch_op(branch_op),
         .zero(zero),

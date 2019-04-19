@@ -33,6 +33,7 @@ module Fetch #(parameter PATH=`INSTRUCTION_FILE) (
     
     instruction_mem #(PATH) INSTR_MEM(
         .clk(instr_mem_clk),
+        .reset(reset),
         .address(pc),
         .instruction(instruction)
     );

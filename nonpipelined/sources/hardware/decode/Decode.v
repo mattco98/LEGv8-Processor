@@ -5,6 +5,7 @@
 module Decode #(parameter PATH=`REGISTERS_FILE) (
     input read_clk,
     input write_clk,
+    input reset,
     input [`INSTR_LEN-1:0] instruction,
     input [`WORD-1:0] write_data,
     
@@ -66,6 +67,7 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
     register_memory #(PATH) REG_MEM(
         .read_clk(read_clk),
         .write_clk(write_clk),
+        .reset(reset),
         .reg_write(reg_write),
         .read_reg1(rn),
         .read_reg2(read_reg2),

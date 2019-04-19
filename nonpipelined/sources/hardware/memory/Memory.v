@@ -6,6 +6,7 @@
 module Memory #(parameter PATH=`RAM_FILE) (
     input  read_clk,
            write_clk,
+           reset,
            zero,
            negative,
            overflow,
@@ -43,6 +44,7 @@ module Memory #(parameter PATH=`RAM_FILE) (
     data_memory #(PATH) DATA_MEM(
         .read_clk(read_clk),
         .write_clk(write_clk),
+        .reset(reset),
         .address(address),
         .mem_read(mem_read),
         .mem_write(mem_write),

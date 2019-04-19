@@ -3,7 +3,8 @@
 `include "constants.vh"
 
 module instruction_mem #(parameter PATH=`INSTRUCTION_FILE, parameter SIZE=1024) (
-    input clk,
+    input clk, 
+          reset,
     input [`WORD-1:0] address,
     output reg [`INSTR_LEN-1:0] instruction
 );
@@ -13,7 +14,8 @@ module instruction_mem #(parameter PATH=`INSTRUCTION_FILE, parameter SIZE=1024) 
     initial 
         $readmemb(PATH, instruction_memory);
     
-    always @(posedge clk) 
-        instruction <= instruction_memory[address / 4];
+    always @(posedge clk or posedge reset) 
+        if (~reset)
+            instruction <= instruction_memory[address / 4];
 
 endmodule
