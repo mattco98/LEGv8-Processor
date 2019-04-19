@@ -6,7 +6,7 @@ This is a very simple implementation of a LEGv8 Processor, which is a subset of 
 
 This project was originally created as part of ELC 3338 at Baylor University. I heavily enjoyed the project, and chose to continue the development of the processor on my own.
 
-_Sidenote to any possible ELC 3338 students who have stumbled across this repository: I've made certain choices to intentionally make this repository hard to copy from if you are in any lab except the last one. I'd recommend not copying anything from this repo :)_
+_Sidenote to any possible ELC 3338 students who have stumbled across this repository: I've made certain choices to intentionally make this repository hard to copy from. I'd recommend not copying anything from this repo._
 
 ## Projects
 
@@ -22,21 +22,24 @@ There are three projects in this repository:
     - Fetch.v
         - register.v
         - mux.v
-        - instruction_memory.v
+        - instruction\_memory.v
     - Decode.v
-        - instr_parse.v
+        - instr\_parse.v
         - control.v
         - mux.v
-        - register_memory.v
-        - sign_extender.v
+	- write\_data\_transformer.v
+        - register\_memory.v
+        - sign\_extender.v
     - Execute.v
-        - left_shift.v
+        - left\_shift.v
         - adder.v
-        - alu_control.v
+        - alu\_control.v
         - mux.v
         - alu.v
+	- status\_register.v
     - Memory.v
-        - data_memory.v
+	- branch\_source.v
+        - data\_memory.v
     - Writeback.v
         - mux.v
 
@@ -80,8 +83,8 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] SUBI
 - [x] SUBIS
 - [x] SUBS
-- [ ] CMP
-- [ ] CMPI
+- [x] CMP
+- [x] CMPI
 - [ ] LDA
 - [ ] MOV
 - [ ] FADDS
@@ -109,4 +112,4 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 Other things that I would like to implement are:
 
 - [ ] Floating point registers
-- [ ] Status flag register (WIP)
+- [x] Status flag register
