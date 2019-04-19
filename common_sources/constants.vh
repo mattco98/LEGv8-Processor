@@ -32,8 +32,8 @@
 `define BCOND   11'b01010100XXX
 `define CBZ     11'b10110100XXX
 `define CBNZ    11'b10110101XXX
-`define CMP     11'b0_1_0_0_1_0_1_1_0_1_1
-`define CMPI    11'b1_1_0_0_0_0_1_1_1_0_X
+`define CMP     11'b01001011011
+`define CMPI    11'b1100001110X
 `define EOR     11'b11001010000
 `define EORI    11'b1101001000X
 `define LDUR    11'b11111000010
