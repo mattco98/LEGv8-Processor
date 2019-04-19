@@ -43,7 +43,7 @@ module datapath;
     // Writeback wires
     wire [`WORD-1:0] write_back;
     
-    Fetch #(`INSTRUCTION_FILE_DIVISION) FETCH(
+    Fetch #(`INSTRUCTION_FILE_DIVISION_SIGNED) FETCH(
         .clk(clk),
         .instr_mem_clk(instr_mem_clk), 
         .reset(reset),
@@ -53,7 +53,7 @@ module datapath;
         .pc(pc)
     );
     
-    Decode #(`REGISTER_FILE_DIVISION) DECODE(
+    Decode #(`REGISTER_FILE_DIVISION_SIGNED) DECODE(
         .read_clk(decode_read_clk),
         .write_clk(decode_write_clk), 
         .reset(reset),
@@ -92,7 +92,7 @@ module datapath;
         .update_sreg(update_sreg)
     );
     
-    Memory #(`RAM_FILE_DIVISION) MEMORY(
+    Memory #(`RAM_FILE_DIVISION_SIGNED) MEMORY(
         .read_clk(memory_clk),
         .write_clk(memory_clk),
         .reset(reset),
@@ -125,7 +125,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 40);
+        #(`CYCLE * 60);
         
         $finish;
     end

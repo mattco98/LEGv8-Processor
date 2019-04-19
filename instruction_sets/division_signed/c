@@ -1,0 +1,41 @@
+/* 
+ * Psuedocode for the division program.
+ *
+ * Assume A refers to the address stored in X22
+ */
+
+void main() {
+    long dividend = A[0], 
+         divisor = A[1],
+         quotient,
+         remainder = dividend;
+         
+    bool dividendNegative, divisorNegative;
+
+    if (dividend < 0) {
+        dividendNegative = true;
+        dividend *= -1; // 0 - dividend
+    }
+
+    if (divisor < 0) {
+        divisorNegative = true;
+        divisor *= -1; // 0 - divisor
+    }
+
+    while (remainer > 0) {
+        remainer -= divisor;
+        quotient++;
+    }
+
+    remainder += divisor;
+    quotient--;
+
+    if (dividendNegative || divisorNegative)
+        remainder *= -1;
+
+    if (dividendNegative != divisorNegative) 
+        quotient *= -1;
+
+    A[2] = quotient;
+    A[3] = remainder;
+}

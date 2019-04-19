@@ -8,16 +8,16 @@ void main() {
     long dividend = A[0], 
          divisor = A[1],
          quotient,
-         remainer = dividend;
+         remainder = dividend;
 
     while (remainer > 0) {
         remainer -= divisor;
         quotient++;
     }
 
-    remainer += divisor;
+    remainder += divisor;
     quotient--;
 
     A[2] = quotient;
-    A[3] = remainer;
+    A[3] = remainder;
 }
