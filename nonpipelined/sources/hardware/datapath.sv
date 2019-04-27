@@ -28,9 +28,9 @@ module datapath;
     wire [10:0] opcode;
     wire [`WORD-1:0] read_data1, read_data2;
     
-    wire mem_read, mem_write, mem_to_reg, alu_src, reg_write, update_sreg;
+    wire mem_read, mem_write, alu_src, reg_write, update_sreg;
     wire [2:0] branch_op;
-    wire [1:0] alu_op;
+    wire [1:0] alu_op, mem_to_reg;
     
     // Execute wires
     wire [`WORD-1:0] branch_alu_result, alu_result;
@@ -115,6 +115,7 @@ module datapath;
         .alu_result(alu_result),
         .read_data(read_data),
         .mem_to_reg(mem_to_reg),
+        .pc(pc),
         .write_back(write_back)
     );
     

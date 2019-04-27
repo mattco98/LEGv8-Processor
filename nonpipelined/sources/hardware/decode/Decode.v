@@ -14,13 +14,13 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
     output [`WORD-1:0] read_data1, read_data2,
     
     output mem_read,
-           mem_to_reg,
            mem_write,
            alu_src,
            reg_write,
            update_sreg,
     output [2:0] branch_op,
-    output [1:0] alu_op
+    output [1:0] alu_op,
+                 mem_to_reg
 );
 
     wire [4:0] rm, rn, rd;
@@ -35,7 +35,7 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
         .opcode(opcode)
     );
     
-    wire readreg2_control;
+    wire readreg2_control, write_reg_src;
     
     control CONTROL(
         .opcode(opcode),
@@ -47,16 +47,26 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
         .alu_src(alu_src),
         .reg_write(reg_write),
         .alu_op(alu_op),
-        .update_sreg(update_sreg)
+        .update_sreg(update_sreg),
+        .write_reg_src(write_reg_src)
     );
     
     wire [4:0] read_reg2;
     
-    mux #(5) READ_REG_2_MUX(
+    mux2 #(5) READ_REG_2_MUX(
         .a(rm),
         .b(rd),
         .control(readreg2_control),
         .out(read_reg2)
+    );
+    
+    wire [4:0] write_reg;
+    
+    mux2 WRITE_REG_MUX(
+        .a(rd),
+        .b(5'd30),
+        .control(write_reg_src),
+        .out(write_reg)
     );
     
     // write_data modifications
@@ -71,7 +81,7 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
         .reg_write(reg_write),
         .read_reg1(rn),
         .read_reg2(read_reg2),
-        .write_reg(rd),
+        .write_reg(write_reg),
         .write_data(write_data_new),
         .read_data1(read_data1),
         .read_data2(read_data2)

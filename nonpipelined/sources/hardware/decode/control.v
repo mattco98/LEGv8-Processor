@@ -6,12 +6,13 @@ module control(
     output reg readreg2_control,
                mem_read,
                mem_write,
-               mem_to_reg,
                reg_write,
                alu_src,
                write_reg_control,
                update_sreg,
+               write_reg_src,
     output reg [1:0] alu_op,
+                     mem_to_reg,
     output reg [2:0] branch_op // 000 => no branch, 001 => branch, 010 => branch_conditionally, 011 => branch_if_zero, 100 => branch_if_not_zero
 );
     
@@ -20,12 +21,13 @@ module control(
         readreg2_control <= 0;
         mem_read <= 0;
         mem_write <= 0;
-        mem_to_reg <= 0;
+        mem_to_reg <= 'b00;
         reg_write <= 0;
         alu_src <= 0;
-        alu_op <= 0;
+        alu_op <= 'b00;
         update_sreg <= 0;
-        branch_op <= 0;
+        branch_op <= 'b000;
+        write_reg_src <= 0;
         
         // Set bits to 1
         casex(opcode)
@@ -60,7 +62,7 @@ module control(
             end
             `LDUR, `LDURB, `LDURH, `LDURSW: begin
                 mem_read <= 1;
-                mem_to_reg <= 1;
+                mem_to_reg <= 'b01;
                 reg_write <= 1;
                 alu_src <= 1;
             end
@@ -88,6 +90,12 @@ module control(
             `BCOND: begin
                 alu_op <= 'b01;
                 branch_op <= 'b010;
+            end
+            `BL: begin
+                alu_op <= 'b01;
+                branch_op <= 'b001;
+                mem_to_reg <= 'b10;
+                write_reg_src <= 1;
             end
         endcase
     end  

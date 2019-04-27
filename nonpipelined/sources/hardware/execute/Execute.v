@@ -44,7 +44,7 @@ module Execute(
     wire [`WORD-1:0] alu_input_b;
     wire negative_internal, zero_internal, carry_internal, overflow_internal;
     
-    mux #(`WORD) ALU_MUX(
+    mux2 #(`WORD) ALU_MUX(
         .a(read_data2),
         .b(sign_extended_instr),
         .control(alu_src),

@@ -29,6 +29,7 @@
 `define ANDS    11'b11101010000
 `define ANDIS   11'b1111001000X
 `define B       11'b000101XXXXX
+`define BL      11'b100101XXXXX
 `define BCOND   11'b01010100XXX
 `define CBZ     11'b10110100XXX
 `define CBNZ    11'b10110101XXX
