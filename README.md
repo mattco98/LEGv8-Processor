@@ -19,6 +19,8 @@ There are three projects in this repository:
 ## Hardware Hierarchy
 
 Nonpipelined:
+<br />
+<br />
 ![NonpipelinedDatapath](./nonpipelined/diagram.png)
 
 ## Instructions
