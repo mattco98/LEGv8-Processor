@@ -18,30 +18,8 @@ There are three projects in this repository:
 
 ## Hardware Hierarchy
 
-- datapath.v
-    - Fetch.v
-        - register.v
-        - mux.v
-        - instruction\_memory.v
-    - Decode.v
-        - instr\_parse.v
-        - control.v
-        - mux.v
-        - write\_data\_transformer.v
-        - register\_memory.v
-        - sign\_extender.v
-    - Execute.v
-        - left\_shift.v
-        - adder.v
-        - alu\_control.v
-        - mux.v
-        - alu.v
-        - status\_register.v
-    - Memory.v
-        - branch\_source.v
-        - data\_memory.v
-    - Writeback.v
-        - mux.v
+Nonpipelined:
+![NonpipelinedDatapath](./nonpipelined/diagram.png)
 
 ## Instructions
 

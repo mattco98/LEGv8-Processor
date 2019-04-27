@@ -1,4 +1,4 @@
-`define FILE_BASE        "/home/matthew/Programming/LEGV8-Processor/LEGv8-Processor/instruction_sets/"
+`define FILE_BASE        "/home/matthew/Programming/LEGv8-Processor/Processor/instruction_sets/"
 `define INSTRUCTION_FILE {`FILE_BASE, "general/instructions"}
 `define RAM_FILE         {`FILE_BASE, "general/ram"}
 `define REGISTERS_FILE   {`FILE_BASE, "general/registers"}
