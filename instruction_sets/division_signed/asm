@@ -1,30 +1,30 @@
-// Load initial values
-LDUR X9,  [X22, #0]   // dividend
-LDUR X10, [X22, #8]   // divisor
-ADD  X11, XZR, XZR    // quotient
-ADD  X12, X9,  XZR    // remainder
+; Load initial values
+0:   LDUR X9,  [X22, #0]   ; dividend
+4:   LDUR X10, [X22, #8]   ; divisor
+8:   ADD  X11, XZR, XZR    ; quotient 
 
-CMPI X9, #0           // is dividend < 0?
-B.GE #3
-ADDI X13, XZR, #1     // dividendNegative
-SUB  X12, XZR, X12    // Fix remainder sign
-SUB  X9,  XZR, X9     // two's compliment
-CMPI X10, #0          // is divisor < 0?
-B.GE #3
-ADDI X14, XZR, #1     // divisorNegative
-SUB  X10, XZR, X10    // two's compliment
-CMPI X12, #0          // begin while loop - condition: remainder > 0
-B.LT #4
-SUB  X12, X12, X10    // decrease remainder by divisor
-ADDI X11, X11, #1     // increase quotient by 1
-B    #-4
-ADD  X12, X12, X10    // While loop always runs an extra time,
-SUBI X11, X11, #1     // so undo one iteration 
-CBZ  X13, #3          // Skip following sub instr if both
-CBZ  X14, #2          // dividendNegative and divisorNegative are == 0
-SUB  X12, XZR, X12    // invert remainder
-CMP  X13, X14         // Skip following sub instr if 
-B.EQ #2               // dividendNegative == divisorNegative
-SUB  X11, XZR, X11
-STUR X11, [X22, #16]  // Store quotient and remainder
-STUR X12, [X22, #24]
+12:  CMPI X9, #0           ; is dividend < 0?
+16:  B.GE #3
+20:  ADDI X13, XZR, #1     ; dividendNegative
+24:  SUB  X9,  XZR, X9     ; two's compliment
+28:  CMPI X10, #0          ; is divisor < 0?
+32:  B.GE #3
+36:  ADDI X14, XZR, #1     ; divisorNegative
+40:  SUB  X10, XZR, X10    ; two's compliment
+44:  ADD  X12, X9,  XZR    ; remainder
+48:  CMPI X12, #0          ; begin while loop - condition: remainder > 0
+52:  B.LE #4
+56:  SUB  X12, X12, X10    ; decrease remainder by divisor
+60:  ADDI X11, X11, #1     ; increase quotient by 1
+64:  B    #-4
+68:  ADD  X12, X12, X10    ; While loop always runs an extra time,
+72:  SUBI X11, X11, #1     ; so undo one iteration 
+76:  CBNZ X13, #3          ; Skip following sub instr if both
+80:  CBNZ X14, #2          ; dividendNegative and divisorNegative are == 0
+84:  B    #3
+88:  SUB  X12, XZR, X12    ; invert remainder
+92:  CMP  X13, X14         ; Skip following sub instr if 
+96:  B.EQ #2               ; dividendNegative == divisorNegative
+100: SUB  X11, XZR, X11
+104: STUR X11, [X22, #16]  ; Store quotient and remainder
+108: STUR X12, [X22, #24]

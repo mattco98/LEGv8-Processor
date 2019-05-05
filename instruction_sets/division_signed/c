@@ -7,10 +7,10 @@
 void main() {
     long dividend = A[0], 
          divisor = A[1],
-         quotient,
-         remainder = dividend;
+         quotient = 0;
          
-    bool dividendNegative, divisorNegative;
+    bool dividendNegative = false, 
+         divisorNegative = false;
 
     if (dividend < 0) {
         dividendNegative = true;
@@ -22,8 +22,10 @@ void main() {
         divisor *= -1; // 0 - divisor
     }
 
-    while (remainer > 0) {
-        remainer -= divisor;
+    long remainder = dividend;
+
+    while (remainder > 0) {
+        remainder -= divisor;
         quotient++;
     }
 

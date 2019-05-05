@@ -12,7 +12,7 @@ module sign_extender(
                 out <= {{52{instruction[21]}}, instruction[21:10]};
             `LDUR, `STUR:
                 out <= {{55{instruction[20]}}, instruction[20:12]};
-             `CBZ, `BCOND:
+             `CBZ, `CBNZ, `BCOND:
                 out <= {{45{instruction[23]}}, instruction[23:5]};
             `B:
                 out <= {{38{instruction[25]}}, instruction[25:0]};
