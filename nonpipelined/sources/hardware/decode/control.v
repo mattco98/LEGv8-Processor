@@ -8,7 +8,6 @@ module control(
                mem_write,
                reg_write,
                alu_src,
-               write_reg_control,
                update_sreg,
                write_reg_src,
     output reg [1:0] alu_op,
@@ -96,6 +95,10 @@ module control(
                 branch_op <= 'b001;
                 mem_to_reg <= 'b10;
                 write_reg_src <= 1;
+            end
+            `BR: begin
+                readreg2_control <= 1;
+                alu_op <= 'b01;
             end
         endcase
     end  

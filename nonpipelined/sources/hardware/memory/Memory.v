@@ -16,9 +16,9 @@ module Memory #(parameter PATH=`RAM_FILE) (
     input  [`WORD-1:0] address,
                        write_data,
     input  [2:0] branch_op,
-    input [10:0] opcode,
-    input [4:0] rt,
-    output pc_src,
+    input  [10:0] opcode,
+    input  [4:0] rt,
+    output [1:0] pc_src,
     output [`WORD-1:0] read_data
 );
 
@@ -36,9 +36,9 @@ module Memory #(parameter PATH=`RAM_FILE) (
     
     always @* begin
         casex(opcode)
-            `STURB: write_data_new <= {{(`WORD-8){1'b0}}, write_data[7:0]}; 
-            `STURH: write_data_new <= {{(`WORD-16){1'b0}}, write_data[15:0]};
-            `STURW: write_data_new <= {{(`WORD-32){1'b0}}, write_data[31:0]};
+            `STURB:  write_data_new <= {{(`WORD-8){1'b0}}, write_data[7:0]}; 
+            `STURH:  write_data_new <= {{(`WORD-16){1'b0}}, write_data[15:0]};
+            `STURW:  write_data_new <= {{(`WORD-32){1'b0}}, write_data[31:0]};
             default: write_data_new <= write_data;
         endcase
     end

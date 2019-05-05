@@ -3,3 +3,7 @@
     
 `define TB_END() \
     $display("=== END TEST BENCH ===");
+    
+`define EXTEND(src, by) \
+    {{by{src}}, src}
+    

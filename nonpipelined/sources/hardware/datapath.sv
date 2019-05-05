@@ -19,7 +19,7 @@ module datapath;
     
     // Fetch wires
     reg  reset;
-    wire pc_src;
+    wire [1:0] pc_src;
     wire [`INSTR_LEN-1:0] instruction;
     wire [`WORD-1:0] pc;
     
@@ -49,6 +49,7 @@ module datapath;
         .reset(reset),
         .pc_src(pc_src), 
         .branch_target(branch_alu_result),
+        .alu_result(alu_result),
         .instruction(instruction),
         .pc(pc)
     );
@@ -115,6 +116,7 @@ module datapath;
         .alu_result(alu_result),
         .read_data(read_data),
         .mem_to_reg(mem_to_reg),
+        .opcode(opcode),
         .pc(pc),
         .write_back(write_back)
     );
