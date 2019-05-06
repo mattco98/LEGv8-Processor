@@ -24,7 +24,7 @@ module datapath;
     reg  reset;
     wire [1:0] pc_src;
     wire [`INSTR_LEN-1:0] instruction;
-    wire [`WORD-1:0] pc;
+    wire [`WORD-1:0] pc, incremented_pc;
     
     // Decode wires
     wire [`WORD-1:0] extended_instruction;
@@ -54,7 +54,8 @@ module datapath;
         .branch_target(branch_alu_result),
         .alu_result(alu_result),
         .instruction(instruction),
-        .pc(pc)
+        .pc(pc),
+        .incremented_pc(incremented_pc)
     );
     
     Decode #(REG_FILE) DECODE(
@@ -120,7 +121,7 @@ module datapath;
         .read_data(read_data),
         .mem_to_reg(mem_to_reg),
         .opcode(opcode),
-        .pc(pc),
+        .incremented_pc(incremented_pc),
         .write_back(write_back)
     );
     

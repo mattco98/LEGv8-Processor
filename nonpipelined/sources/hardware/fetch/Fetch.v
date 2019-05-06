@@ -11,10 +11,11 @@ module Fetch #(parameter PATH=`INSTRUCTION_FILE) (
     input [`WORD-1:0] branch_target,
                       alu_result,
     output [`INSTR_LEN-1:0] instruction,
+    output [`WORD-1:0] incremented_pc,
     output [`WORD-1:0] pc
 );
 
-    wire [`WORD-1:0] new_pc, incremented_pc;
+    wire [`WORD-1:0] new_pc;
     
     register PC(
         .clk(clk),
