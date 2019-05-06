@@ -3,9 +3,9 @@
 `include "files.vh"
 
 module datapath;
-    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_MULTIPLY_WITH_SHIFT;
-    parameter REG_FILE = `REGISTER_FILE_MULTIPLY_WITH_SHIFT;
-    parameter RAM_FILE = `RAM_FILE_MULTIPLY_WITH_SHIFT;
+    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE;
+    parameter REG_FILE = `REGISTER_FILE;
+    parameter RAM_FILE = `RAM_FILE;
 
     // Clocks
     wire clk,

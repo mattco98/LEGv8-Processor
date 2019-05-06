@@ -37,7 +37,7 @@ module control(
             `LSL, `LSR: begin
                 reg_write <= 1;
                 alu_src <= 1;
-                alu_op <= 2'b10;
+                alu_op <= 2'b11;
             end
             `ADDS, `ANDS, `SUBS: begin
                 reg_write <= 1;
@@ -106,6 +106,10 @@ module control(
                 readreg2_control <= 1;
                 alu_op <= 'b01;
                 branch_op <= `BCOND_OP_ALU;
+            end
+            `MOV: begin
+                alu_src <= 1;
+                reg_write <= 1;
             end
         endcase
     end  

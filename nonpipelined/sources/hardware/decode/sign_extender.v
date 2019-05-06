@@ -18,8 +18,10 @@ module sign_extender(
                 out <= {{45{instruction[23]}}, instruction[23:5]};
             `B, `BL:
                 out <= {{38{instruction[25]}}, instruction[25:0]};
+            `MOV: 
+                out <= {(`WORD-1){1'b0}};
             default:
-                out <= {{`WORD-`INSTR_LEN{1'b0}}, instruction};
+                out <= {{(`WORD-`INSTR_LEN){1'b0}}, instruction};
         endcase
     end
 
