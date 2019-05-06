@@ -95,10 +95,12 @@ module control(
                 branch_op <= 'b001;
                 mem_to_reg <= 'b10;
                 write_reg_src <= 1;
+                reg_write <= 1;
             end
             `BR: begin
                 readreg2_control <= 1;
                 alu_op <= 'b01;
+                branch_op <= `BCOND_OP_ALU;
             end
         endcase
     end  

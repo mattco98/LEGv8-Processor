@@ -14,7 +14,7 @@ module sign_extender(
                 out <= {{55{instruction[20]}}, instruction[20:12]};
              `CBZ, `CBNZ, `BCOND:
                 out <= {{45{instruction[23]}}, instruction[23:5]};
-            `B:
+            `B, `BL:
                 out <= {{38{instruction[25]}}, instruction[25:0]};
             default:
                 out <= {{`WORD-`INSTR_LEN{1'b0}}, instruction};

@@ -3,6 +3,9 @@
 `include "files.vh"
 
 module datapath;
+    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_FUNCTIONS;
+    parameter REG_FILE = `REGISTER_FILE_FUNCTIONS;
+    parameter RAM_FILE = `RAM_FILE_FUNCTIONS;
 
     // Clocks
     wire clk,
@@ -43,7 +46,7 @@ module datapath;
     // Writeback wires
     wire [`WORD-1:0] write_back;
     
-    Fetch #(`INSTRUCTION_FILE_DIVISION_SIGNED) FETCH(
+    Fetch #(INSTRUCTION_FILE) FETCH(
         .clk(clk),
         .instr_mem_clk(instr_mem_clk), 
         .reset(reset),
@@ -54,7 +57,7 @@ module datapath;
         .pc(pc)
     );
     
-    Decode #(`REGISTER_FILE_DIVISION_SIGNED) DECODE(
+    Decode #(REG_FILE) DECODE(
         .read_clk(decode_read_clk),
         .write_clk(decode_write_clk), 
         .reset(reset),
@@ -93,7 +96,7 @@ module datapath;
         .update_sreg(update_sreg)
     );
     
-    Memory #(`RAM_FILE_DIVISION_SIGNED) MEMORY(
+    Memory #(RAM_FILE) MEMORY(
         .read_clk(memory_clk),
         .write_clk(memory_clk),
         .reset(reset),
@@ -128,7 +131,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 60);
+        #(`CYCLE * 500);
         
         $finish;
     end

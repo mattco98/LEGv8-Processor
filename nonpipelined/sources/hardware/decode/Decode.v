@@ -2,7 +2,7 @@
 `include "constants.vh"
 `include "files.vh"
 
-module Decode #(parameter PATH=`REGISTERS_FILE) (
+module Decode #(parameter PATH=`REGISTER_FILE) (
     input read_clk,
     input write_clk,
     input reset,
@@ -62,7 +62,7 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
     
     wire [4:0] write_reg;
     
-    mux2 WRITE_REG_MUX(
+    mux2 #(5) WRITE_REG_MUX(
         .a(rd),
         .b(5'd30),
         .control(write_reg_src),
