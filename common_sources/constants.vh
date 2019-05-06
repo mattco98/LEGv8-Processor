@@ -30,6 +30,7 @@
 `define ANDIS   11'b1111001000X
 `define B       11'b000101XXXXX
 `define BL      11'b100101XXXXX
+`define BR      11'b11010110000
 `define BCOND   11'b01010100XXX
 `define CBZ     11'b10110100XXX
 `define CBNZ    11'b10110101XXX
@@ -80,4 +81,5 @@
 `define BCOND_OP_COND    3'b010
 `define BCOND_OP_ZERO    3'b011
 `define BCOND_OP_NZERO   3'b100
+`define BCOND_OP_ALU     3'b101
 

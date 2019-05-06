@@ -1,0 +1,25 @@
+0:    LDUR   X9,   [X22, #0] ; num
+4:    ADDI   X10,  XZR,  #1   ; ans
+
+8:    CBZ    X9,   #18
+12:   ADD    X11,  XZR,  X9 ; i
+      ; Begin for loop
+      ; Load arguments into X0 and X1
+16:   ADD    X0,   X10,  XZR
+20:   ADD    X1,   X11,  XZR
+24:   BL     #6
+      ; Get result in X7
+28:   ADD    X10,  X7,  XZR
+32:   SUBI   X11,  X11, #1
+36:   CMPI   X11,  #1
+40:   B.GT   #-6
+44:   B      #9
+48:   ADD    X12,  XZR,  XZR ; Multiply function
+52:   ADD    X13,  X0,   XZR ; i
+56:   CBZ    X13,  #4
+60:   ADD    X12,  X12,  X1
+64:   SUBI   X13,  X13,  #1
+68:   B      #-3
+72:   ADD    X7,   XZR,  X12
+76:   BR     X30              ; return
+80:   STUR   X10,   [X22, #8]

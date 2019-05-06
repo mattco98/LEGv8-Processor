@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "constants.vh"
 
 module mux2 #(parameter SIZE=`WORD) (
     input  [SIZE-1:0] a,

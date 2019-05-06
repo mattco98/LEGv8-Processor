@@ -2,7 +2,7 @@
 `include "constants.vh"
 `include "files.vh"
 
-module register_memory #(parameter PATH=`REGISTERS_FILE)(
+module register_memory #(parameter PATH=`REGISTER_FILE)(
     input read_clk,
     input write_clk,
     input reset,

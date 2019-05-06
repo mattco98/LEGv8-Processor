@@ -2,7 +2,7 @@
 `include "constants.vh"
 `include "files.vh"
 
-module Decode #(parameter PATH=`REGISTERS_FILE) (
+module Decode #(parameter PATH=`REGISTER_FILE) (
     input read_clk,
     input write_clk,
     input reset,
@@ -62,17 +62,12 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
     
     wire [4:0] write_reg;
     
-    mux2 WRITE_REG_MUX(
+    mux2 #(5) WRITE_REG_MUX(
         .a(rd),
         .b(5'd30),
         .control(write_reg_src),
         .out(write_reg)
     );
-    
-    // write_data modifications
-    wire [`WORD-1:0] write_data_new;
-    
-    write_data_transformer WRITE_DATA_TRANSFORMER(write_data, opcode, write_data_new);
     
     register_memory #(PATH) REG_MEM(
         .read_clk(read_clk),
@@ -82,7 +77,7 @@ module Decode #(parameter PATH=`REGISTERS_FILE) (
         .read_reg1(rn),
         .read_reg2(read_reg2),
         .write_reg(write_reg),
-        .write_data(write_data_new),
+        .write_data(write_data),
         .read_data1(read_data1),
         .read_data2(read_data2)
     );

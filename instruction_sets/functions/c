@@ -1,0 +1,26 @@
+/* 
+ * Psuedocode for the function program. 
+ * Calculates the factorial of A[0] using a function.
+ *
+ * Assume A refers to the address stored in X22
+ */
+void main() {
+    int n = A[0];
+    int ans = 1;
+
+    if (n != 0) {
+        for (int i = n; i > 1; i--) {
+            ans = multiply(ans, i);
+        }
+    }
+
+    A[1] = ans;
+}
+
+int multiply(int a, int b) {
+    int ans = 0;
+    for (int i = a; i > 0; i--) {
+        ans += b;
+    }
+    return ans;
+}

@@ -7,8 +7,9 @@ module Fetch #(parameter PATH=`INSTRUCTION_FILE) (
     input clk,
     input instr_mem_clk,
     input reset,
-    input pc_src,
+    input [1:0] pc_src,
     input [`WORD-1:0] branch_target,
+                      alu_result,
     output [`INSTR_LEN-1:0] instruction,
     output [`WORD-1:0] pc
 );
@@ -22,9 +23,10 @@ module Fetch #(parameter PATH=`INSTRUCTION_FILE) (
         .Q(pc)
     );
     
-    mux #(`WORD) MUX(
+    mux3 #(`WORD) MUX(
         .a(incremented_pc),
         .b(branch_target),
+        .c(alu_result),
         .control(pc_src),
         .out(new_pc)
     );

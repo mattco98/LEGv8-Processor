@@ -3,7 +3,6 @@
  *
  * Assume A refers to the address stored in X22
  */
-
 void main() {
     long dividend = A[0], 
          divisor = A[1],
@@ -14,12 +13,12 @@ void main() {
 
     if (dividend < 0) {
         dividendNegative = true;
-        dividend *= -1; // 0 - dividend
+        dividend *= -1;
     }
 
     if (divisor < 0) {
         divisorNegative = true;
-        divisor *= -1; // 0 - divisor
+        divisor *= -1;
     }
 
     long remainder = dividend;
@@ -35,7 +34,7 @@ void main() {
     if (dividendNegative || divisorNegative)
         remainder *= -1;
 
-    if (dividendNegative != divisorNegative) 
+    if (dividendNegative != divisorNegative)
         quotient *= -1;
 
     A[2] = quotient;
