@@ -9,8 +9,8 @@ module Execute(
                       read_data1,
                       read_data2,
     input [10:0] opcode,
-    input [1:0] alu_op,
     input alu_src, update_sreg,
+    input [3:0] alu_op,
     
     output [`WORD-1:0] branch_alu_result,
                        alu_result,
@@ -34,12 +34,6 @@ module Execute(
     // ALU Control
     wire [3:0] alu_control;
     
-    alu_control ALU_CONTROL(
-        .alu_op(alu_op),
-        .opcode(opcode),
-        .alu_control(alu_control)
-    );
-    
     // ALU
     wire [`WORD-1:0] alu_input_b;
     wire negative_internal, zero_internal, carry_internal, overflow_internal;
@@ -54,7 +48,7 @@ module Execute(
     alu MAIN_ALU(
         .a(read_data1),
         .b(alu_input_b),
-        .alu_control(alu_control),
+        .alu_op(alu_op),
         .negative(negative_internal),
         .zero(zero_internal),
         .carry(carry_internal),

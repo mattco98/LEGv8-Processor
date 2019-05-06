@@ -19,8 +19,8 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
            reg_write,
            update_sreg,
     output [2:0] branch_op,
-    output [1:0] alu_op,
-                 mem_to_reg
+    output [1:0] mem_to_reg,
+    output [3:0] alu_op
 );
 
     wire [4:0] rm, rn, rd;

@@ -47,6 +47,8 @@
 `define LSL     11'b11010011011
 `define LSR     11'b11010011010
 `define MOV     11'b10010011110
+`define MOVK    11'b111100101XX
+`define MOVZ    11'b110100101XX
 `define ORR     11'b10101010000
 `define ORRI    11'b1011001000X
 `define STUR    11'b11111000000

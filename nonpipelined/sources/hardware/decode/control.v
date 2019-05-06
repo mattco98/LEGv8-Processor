@@ -10,8 +10,8 @@ module control(
                alu_src,
                update_sreg,
                write_reg_src,
-    output reg [1:0] alu_op,
-                     mem_to_reg,
+    output reg [1:0] mem_to_reg,
+    output reg [3:0] alu_op, 
     output reg [2:0] branch_op // 000 => no branch, 001 => branch, 010 => branch_conditionally, 011 => branch_if_zero, 100 => branch_if_not_zero
 );
     
@@ -23,7 +23,6 @@ module control(
         mem_to_reg <= 'b00;
         reg_write <= 0;
         alu_src <= 0;
-        alu_op <= 'b00;
         update_sreg <= 0;
         branch_op <= 'b000;
         write_reg_src <= 0;
@@ -32,36 +31,29 @@ module control(
         casex(opcode)
             `ADD, `SUB, `AND, `ORR: begin
                 reg_write <= 1;
-                alu_op <= 'b10;
             end
             `LSL, `LSR: begin
                 reg_write <= 1;
                 alu_src <= 1;
-                alu_op <= 2'b11;
             end
             `ADDS, `ANDS, `SUBS: begin
                 reg_write <= 1;
-                alu_op <= 'b10;
                 update_sreg <= 1;
             end
             `ADDI, `ANDI, `EORI, `ORRI, `SUBI: begin
                 reg_write <= 1;
                 alu_src <= 1;
-                alu_op <= 'b10;
             end
             `ADDIS, `ANDIS, `SUBS: begin
                 reg_write <= 1;
                 alu_src <= 1;
-                alu_op <= 'b10;
                 update_sreg <= 1;
             end
             `CMP: begin
-                alu_op <= 'b10;
                 update_sreg <= 1;
             end
             `CMPI: begin
                 alu_src <= 1;
-                alu_op <= 'b10;
                 update_sreg <= 1;
             end
             `LDUR, `LDURB, `LDURH, `LDURSW: begin
@@ -77,26 +69,21 @@ module control(
             end
             `CBZ: begin
                 readreg2_control <= 1;
-                alu_op <= 'b01;
                 update_sreg <= 1;
                 branch_op <= 'b011;
             end
             `CBNZ: begin
                 readreg2_control <= 1;
-                alu_op <= 'b01;
                 update_sreg <= 1;
                 branch_op <= 'b100;
             end
             `B: begin
-                alu_op <= 'b01;
                 branch_op <= 'b001;
             end
             `BCOND: begin
-                alu_op <= 'b01;
                 branch_op <= 'b010;
             end
             `BL: begin
-                alu_op <= 'b01;
                 branch_op <= 'b001;
                 mem_to_reg <= 'b10;
                 write_reg_src <= 1;
@@ -104,13 +91,31 @@ module control(
             end
             `BR: begin
                 readreg2_control <= 1;
-                alu_op <= 'b01;
                 branch_op <= `BCOND_OP_ALU;
             end
             `MOV: begin
                 alu_src <= 1;
                 reg_write <= 1;
             end
+            `MOVK, `MOVZ: begin
+                reg_write <= 1;
+                alu_src <= 1;
+                
+            end
+        endcase
+        
+        // Set alu_op (cleaner in its own case statement)
+        casex(opcode)
+            `STUR, `STURB, `STURH, `STURW, `LDUR, `LDURB, `LDURH, `LDURSW, `MOV: 
+                alu_op <= `ALU_ADD;
+            `CBZ, `CBNZ, `B, `BCOND, `BL, `BR:
+                alu_op <= `ALU_PASS_B;
+            `LSL: 
+                alu_op <= `ALU_LSL;
+            `LSR:
+                alu_op <= `ALU_LSR;
+            default:
+                alu_op <= {1'b0, opcode[9], opcode[3], opcode[8]};
         endcase
     end  
     

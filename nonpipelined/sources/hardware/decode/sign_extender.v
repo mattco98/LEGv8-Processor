@@ -9,17 +9,19 @@ module sign_extender(
     always @* begin
         casex(instruction[31:21])
             `LSL, `LSR:
-                out <= {{58{instruction[15]}}, instruction[15:10]};
+                out <= {{(`WORD-6){instruction[15]}}, instruction[15:10]};
             `ADDI, `ANDI, `EORI, `ORRI, `SUBI, `CMPI:
-                out <= {{52{instruction[21]}}, instruction[21:10]};
+                out <= {{(`WORD-12){instruction[21]}}, instruction[21:10]};
             `LDUR, `STUR:
-                out <= {{55{instruction[20]}}, instruction[20:12]};
+                out <= {{(`WORD-9){instruction[20]}}, instruction[20:12]};
              `CBZ, `CBNZ, `BCOND:
-                out <= {{45{instruction[23]}}, instruction[23:5]};
+                out <= {{(`WORD-19){instruction[23]}}, instruction[23:5]};
             `B, `BL:
-                out <= {{38{instruction[25]}}, instruction[25:0]};
+                out <= {{(`WORD-26){instruction[25]}}, instruction[25:0]};
             `MOV: 
-                out <= {(`WORD-1){1'b0}};
+                out <= {`WORD{1'b0}};
+            `MOVK, `MOVZ:
+                out <= {{(`WORD-16){1'b0}}, instruction[20:5]};
             default:
                 out <= {{(`WORD-`INSTR_LEN){1'b0}}, instruction};
         endcase

@@ -3,9 +3,9 @@
 `include "files.vh"
 
 module datapath;
-    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE;
-    parameter REG_FILE = `REGISTER_FILE;
-    parameter RAM_FILE = `RAM_FILE;
+    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_FUNCTIONS;
+    parameter REG_FILE = `REGISTER_FILE_FUNCTIONS;
+    parameter RAM_FILE = `RAM_FILE_FUNCTIONS;
 
     // Clocks
     wire clk,
@@ -33,7 +33,8 @@ module datapath;
     
     wire mem_read, mem_write, alu_src, reg_write, update_sreg;
     wire [2:0] branch_op;
-    wire [1:0] alu_op, mem_to_reg;
+    wire [1:0] mem_to_reg;
+    wire [3:0] alu_op;
     
     // Execute wires
     wire [`WORD-1:0] branch_alu_result, alu_result;
@@ -68,10 +69,10 @@ module datapath;
         .opcode(opcode),
         .read_data1(read_data1),
         .read_data2(read_data2),
+        .alu_op(alu_op),
         .branch_op(branch_op),
         .mem_read(mem_read),
         .mem_to_reg(mem_to_reg),
-        .alu_op(alu_op),
         .mem_write(mem_write),
         .alu_src(alu_src),
         .reg_write(reg_write),
@@ -86,8 +87,8 @@ module datapath;
         .read_data1(read_data1),
         .read_data2(read_data2),
         .opcode(opcode),
-        .alu_op(alu_op),
         .alu_src(alu_src),
+        .alu_op(alu_op),
         .branch_alu_result(branch_alu_result),
         .zero(zero),
         .overflow(overflow),
@@ -132,7 +133,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 5);
+        #(`CYCLE * 500);
         
         $finish;
     end

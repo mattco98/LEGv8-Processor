@@ -4,7 +4,7 @@
 module alu(
     input signed [`WORD-1:0] a,
     input signed [`WORD-1:0] b,
-    input [3:0] alu_control,
+    input [3:0] alu_op,
     output signed [`WORD-1:0] result,
     output zero,
     output negative,
@@ -24,7 +24,7 @@ module alu(
     always @* begin
         overflow = 0;
         
-        case(alu_control)
+        case(alu_op)
             `ALU_AND: 
                 buff = a & b;
             `ALU_OR:   
