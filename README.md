@@ -48,8 +48,8 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] LDURH
 - [x] LDURSW
 - [ ] LDXR
-- [ ] LSL
-- [ ] LSR
+- [x] LSL
+- [x] LSR
 - [ ] MOVK
 - [ ] MOVZ
 - [x] ORR
