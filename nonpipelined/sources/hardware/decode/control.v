@@ -34,6 +34,11 @@ module control(
                 reg_write <= 1;
                 alu_op <= 'b10;
             end
+            `LSL, `LSR: begin
+                reg_write <= 1;
+                alu_src <= 1;
+                alu_op <= 2'b10;
+            end
             `ADDS, `ANDS, `SUBS: begin
                 reg_write <= 1;
                 alu_op <= 'b10;

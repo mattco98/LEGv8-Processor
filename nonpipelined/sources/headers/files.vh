@@ -17,3 +17,7 @@
 `define INSTRUCTION_FILE_FUNCTIONS {`FILE_BASE, "functions/instructions"}
 `define REGISTER_FILE_FUNCTIONS    {`FILE_BASE, "functions/registers"}
 `define RAM_FILE_FUNCTIONS         {`FILE_BASE, "functions/ram"}
+
+`define INSTRUCTION_FILE_MULTIPLY_WITH_SHIFT {`FILE_BASE, "multiply_with_shift/instructions"}
+`define REGISTER_FILE_MULTIPLY_WITH_SHIFT    {`FILE_BASE, "multiply_with_shift/registers"}
+`define RAM_FILE_MULTIPLY_WITH_SHIFT         {`FILE_BASE, "multiply_with_shift/ram"}

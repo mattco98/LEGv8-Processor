@@ -3,9 +3,9 @@
 `include "files.vh"
 
 module datapath;
-    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_FUNCTIONS;
-    parameter REG_FILE = `REGISTER_FILE_FUNCTIONS;
-    parameter RAM_FILE = `RAM_FILE_FUNCTIONS;
+    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_MULTIPLY_WITH_SHIFT;
+    parameter REG_FILE = `REGISTER_FILE_MULTIPLY_WITH_SHIFT;
+    parameter RAM_FILE = `RAM_FILE_MULTIPLY_WITH_SHIFT;
 
     // Clocks
     wire clk,
@@ -131,7 +131,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 500);
+        #(`CYCLE * 5);
         
         $finish;
     end

@@ -16,6 +16,8 @@
 `define ALU_PASS_B   4'b0111
 `define ALU_NOR      4'b1100
 `define ALU_XOR      4'b0100
+`define ALU_LSL      4'b1000
+`define ALU_LSR      4'b1001
 
 /////////////
 // OPCODES //
@@ -42,6 +44,8 @@
 `define LDURB   11'b00111000010
 `define LDURH   11'b01111000010
 `define LDURSW  11'b10111000100
+`define LSL     11'b11010011011
+`define LSR     11'b11010011010
 `define ORR     11'b10101010000
 `define ORRI    11'b1011001000X
 `define STUR    11'b11111000000

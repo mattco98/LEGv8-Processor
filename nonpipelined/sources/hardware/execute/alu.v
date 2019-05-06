@@ -45,6 +45,10 @@ module alu(
                 buff = ~(a | b);
             `ALU_XOR:      
                 buff = a ^ b;
+            `ALU_LSL:
+                buff = a << b;
+            `ALU_LSR:
+                buff = a >> b;
         endcase
     end
     

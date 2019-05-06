@@ -8,6 +8,8 @@ module sign_extender(
 
     always @* begin
         casex(instruction[31:21])
+            `LSL, `LSR:
+                out <= {{58{instruction[15]}}, instruction[15:10]};
             `ADDI, `ANDI, `EORI, `ORRI, `SUBI, `CMPI:
                 out <= {{52{instruction[21]}}, instruction[21:10]};
             `LDUR, `STUR:
