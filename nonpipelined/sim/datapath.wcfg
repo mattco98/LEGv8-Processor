@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="2501000000fs"></ZoomStartTime>
-      <ZoomEndTime time="5507000001fs"></ZoomEndTime>
-      <Cursor1Time time="5006000000fs"></Cursor1Time>
+      <ZoomStartTime time="581833333fs"></ZoomStartTime>
+      <ZoomEndTime time="730833334fs"></ZoomEndTime>
+      <Cursor1Time time="706000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <ValueColumnWidth column_width="130"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="6" />
    <wvobject type="group" fp_name="group31">
@@ -115,170 +115,9 @@
          <obj_property name="ObjectShortName">write_clk</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem">
-         <obj_property name="ElementShortName">register_mem[63:0][63:0]</obj_property>
-         <obj_property name="ObjectShortName">register_mem[63:0][63:0]</obj_property>
+         <obj_property name="ElementShortName">register_mem[31:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">register_mem[31:0][63:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <obj_property name="isExpanded"></obj_property>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[63]">
-            <obj_property name="ElementShortName">[63][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[63][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[62]">
-            <obj_property name="ElementShortName">[62][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[62][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[61]">
-            <obj_property name="ElementShortName">[61][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[61][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[60]">
-            <obj_property name="ElementShortName">[60][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[60][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[59]">
-            <obj_property name="ElementShortName">[59][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[59][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[58]">
-            <obj_property name="ElementShortName">[58][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[58][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[57]">
-            <obj_property name="ElementShortName">[57][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[57][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[56]">
-            <obj_property name="ElementShortName">[56][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[56][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[55]">
-            <obj_property name="ElementShortName">[55][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[55][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[54]">
-            <obj_property name="ElementShortName">[54][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[54][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[53]">
-            <obj_property name="ElementShortName">[53][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[53][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[52]">
-            <obj_property name="ElementShortName">[52][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[52][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[51]">
-            <obj_property name="ElementShortName">[51][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[51][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[50]">
-            <obj_property name="ElementShortName">[50][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[50][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[49]">
-            <obj_property name="ElementShortName">[49][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[49][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[48]">
-            <obj_property name="ElementShortName">[48][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[48][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[47]">
-            <obj_property name="ElementShortName">[47][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[47][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[46]">
-            <obj_property name="ElementShortName">[46][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[46][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[45]">
-            <obj_property name="ElementShortName">[45][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[45][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[44]">
-            <obj_property name="ElementShortName">[44][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[44][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[43]">
-            <obj_property name="ElementShortName">[43][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[43][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[42]">
-            <obj_property name="ElementShortName">[42][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[42][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[41]">
-            <obj_property name="ElementShortName">[41][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[41][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[40]">
-            <obj_property name="ElementShortName">[40][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[40][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[39]">
-            <obj_property name="ElementShortName">[39][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[39][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[38]">
-            <obj_property name="ElementShortName">[38][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[38][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[37]">
-            <obj_property name="ElementShortName">[37][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[37][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[36]">
-            <obj_property name="ElementShortName">[36][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[36][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[35]">
-            <obj_property name="ElementShortName">[35][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[35][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[34]">
-            <obj_property name="ElementShortName">[34][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[34][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[33]">
-            <obj_property name="ElementShortName">[33][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[33][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[32]">
-            <obj_property name="ElementShortName">[32][63:0]</obj_property>
-            <obj_property name="ObjectShortName">[32][63:0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
          <wvobject type="array" fp_name="/datapath/DECODE/REG_MEM/register_mem[31]">
             <obj_property name="ElementShortName">[31][63:0]</obj_property>
             <obj_property name="ObjectShortName">[31][63:0]</obj_property>
@@ -536,6 +375,18 @@
          <obj_property name="ObjectShortName">mem_to_reg[1:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
+      <wvobject type="logic" fp_name="/datapath/DECODE/CONTROL/mult_start">
+         <obj_property name="ElementShortName">mult_start</obj_property>
+         <obj_property name="ObjectShortName">mult_start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/DECODE/CONTROL/execute_result_loc">
+         <obj_property name="ElementShortName">execute_result_loc</obj_property>
+         <obj_property name="ObjectShortName">execute_result_loc</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/DECODE/CONTROL/stall">
+         <obj_property name="ElementShortName">stall</obj_property>
+         <obj_property name="ObjectShortName">stall</obj_property>
+      </wvobject>
       <wvobject type="array" fp_name="/datapath/DECODE/address">
          <obj_property name="ElementShortName">address[8:0]</obj_property>
          <obj_property name="ObjectShortName">address[8:0]</obj_property>
@@ -545,9 +396,65 @@
    <wvobject type="group" fp_name="group34">
       <obj_property name="label">Execute</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/datapath/EXECUTE/clk">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="group4576">
+         <obj_property name="label">Multiplier</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="logic" fp_name="/datapath/EXECUTE/MULTIPLIER/start">
+            <obj_property name="ElementShortName">start</obj_property>
+            <obj_property name="ObjectShortName">start</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/EXECUTE/MULTIPLIER/reset">
+            <obj_property name="ElementShortName">reset</obj_property>
+            <obj_property name="ObjectShortName">reset</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/EXECUTE/MULTIPLIER/a">
+            <obj_property name="ElementShortName">a[63:0]</obj_property>
+            <obj_property name="ObjectShortName">a[63:0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/EXECUTE/MULTIPLIER/b">
+            <obj_property name="ElementShortName">b[63:0]</obj_property>
+            <obj_property name="ObjectShortName">b[63:0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/EXECUTE/MULTIPLIER/result">
+            <obj_property name="ElementShortName">result[63:0]</obj_property>
+            <obj_property name="ObjectShortName">result[63:0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/EXECUTE/MULTIPLIER/stall">
+            <obj_property name="ElementShortName">stall</obj_property>
+            <obj_property name="ObjectShortName">stall</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/EXECUTE/MULTIPLIER/done">
+            <obj_property name="ElementShortName">done</obj_property>
+            <obj_property name="ObjectShortName">done</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/EXECUTE/MULTIPLIER/active">
+            <obj_property name="ElementShortName">active</obj_property>
+            <obj_property name="ObjectShortName">active</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/EXECUTE/MULTIPLIER/multiplicand">
+            <obj_property name="ElementShortName">multiplicand[63:0]</obj_property>
+            <obj_property name="ObjectShortName">multiplicand[63:0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/EXECUTE/MULTIPLIER/product">
+            <obj_property name="ElementShortName">product[127:0]</obj_property>
+            <obj_property name="ObjectShortName">product[127:0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/EXECUTE/MULTIPLIER/i">
+            <obj_property name="ElementShortName">i[64:0]</obj_property>
+            <obj_property name="ObjectShortName">i[64:0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         </wvobject>
       </wvobject>
       <wvobject type="array" fp_name="/datapath/EXECUTE/pc">
          <obj_property name="ElementShortName">pc[63:0]</obj_property>
@@ -593,6 +500,10 @@
          <obj_property name="ObjectShortName">alu_input_b[63:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
+      <wvobject type="logic" fp_name="/datapath/stall">
+         <obj_property name="ElementShortName">stall</obj_property>
+         <obj_property name="ObjectShortName">stall</obj_property>
+      </wvobject>
       <wvobject type="logic" fp_name="/datapath/EXECUTE/alu_src">
          <obj_property name="ElementShortName">alu_src</obj_property>
          <obj_property name="ObjectShortName">alu_src</obj_property>
@@ -633,10 +544,6 @@
          <obj_property name="ElementShortName">overflow_internal</obj_property>
          <obj_property name="ObjectShortName">overflow_internal</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/datapath/EXECUTE/alu_control">
-         <obj_property name="ElementShortName">alu_control[3:0]</obj_property>
-         <obj_property name="ObjectShortName">alu_control[3:0]</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group35">
       <obj_property name="label">Memory</obj_property>
@@ -654,7 +561,6 @@
          <obj_property name="ElementShortName">data_mem[1023:0][63:0]</obj_property>
          <obj_property name="ObjectShortName">data_mem[1023:0][63:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject type="array" fp_name="/datapath/MEMORY/DATA_MEM/data_mem[1023]">
             <obj_property name="ElementShortName">[1023][63:0]</obj_property>
             <obj_property name="ObjectShortName">[1023][63:0]</obj_property>

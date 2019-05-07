@@ -130,6 +130,7 @@ module datapath;
         .read_data(read_data),
         .mem_to_reg(mem_to_reg),
         .instruction(instruction),
+        .read_data2(read_data2),
         .incremented_pc(incremented_pc),
         .write_back(write_back)
     );

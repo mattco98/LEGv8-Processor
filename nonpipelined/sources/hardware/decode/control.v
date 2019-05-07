@@ -104,9 +104,14 @@ module control(
                     alu_src <= 1;
                     reg_write <= 1;
                 end
-                `MOVK, `MOVZ: begin
+                `MOVZ: begin
                     reg_write <= 1;
                     alu_src <= 1;
+                end
+                `MOVK: begin
+                    reg_write <= 1;
+                    alu_src <= 1;
+                    readreg2_control <= 1;
                 end
                 `MUL: begin
                     if (multiplier_done) begin
