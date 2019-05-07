@@ -129,7 +129,7 @@ module datapath;
         .alu_result(alu_result),
         .read_data(read_data),
         .mem_to_reg(mem_to_reg),
-        .opcode(opcode),
+        .instruction(instruction),
         .incremented_pc(incremented_pc),
         .write_back(write_back)
     );

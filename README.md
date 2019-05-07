@@ -51,7 +51,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] LSL
 - [x] LSR
 - [ ] MOVK
-- [ ] MOVZ
+- [x] MOVZ
 - [x] ORR
 - [x] ORRI
 - [x] STUR
