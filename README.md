@@ -79,7 +79,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] FSUBD
 - [ ] LDURS
 - [ ] LDURD
-- [ ] MUL
+- [x] MUL
 - [ ] SDIV
 - [ ] SMULH
 - [ ] STURS
