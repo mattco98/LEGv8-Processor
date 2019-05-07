@@ -65,7 +65,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] SUBS
 - [x] CMP
 - [x] CMPI
-- [ ] LDA
+- [x] LDA
 - [x] MOV
 - [ ] FADDS
 - [ ] FADDD

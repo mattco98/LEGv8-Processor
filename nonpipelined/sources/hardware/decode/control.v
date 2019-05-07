@@ -117,11 +117,16 @@ module control(
                         branch_op <= 'b110;
                     end
                 end
+                `LDA: begin
+                    readreg2_control <= 1;
+                    reg_write <= 1;
+                    alu_src <= 1;
+                end
             endcase
             
             // Set alu_op (cleaner in its own case statement)
             casex(opcode)
-                `STUR, `STURB, `STURH, `STURW, `LDUR, `LDURB, `LDURH, `LDURSW, `MOV: 
+                `STUR, `STURB, `STURH, `STURW, `LDUR, `LDURB, `LDURH, `LDURSW, `LDA, `MOV: 
                     alu_op <= `ALU_ADD;
                 `CBZ, `CBNZ, `B, `BCOND, `BL, `BR:
                     alu_op <= `ALU_PASS_B;
