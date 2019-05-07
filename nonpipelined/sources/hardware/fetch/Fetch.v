@@ -24,10 +24,11 @@ module Fetch #(parameter PATH=`INSTRUCTION_FILE) (
         .Q(pc)
     );
     
-    mux3 #(`WORD) MUX(
+    mux4 #(`WORD) MUX(
         .a(incremented_pc),
         .b(branch_target),
         .c(alu_result),
+        .d(pc),
         .control(pc_src),
         .out(new_pc)
     );

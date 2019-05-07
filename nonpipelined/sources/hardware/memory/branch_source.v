@@ -21,6 +21,8 @@ module branch_source(
             branch_src <= 'b01;
         else if (branch_op == `BCOND_OP_ALU) 
             branch_src <= 'b10;
+        else if (branch_op == 'b110)
+            branch_src <= 'b11;
         else if (branch_op == `BCOND_OP_COND) begin
             casex(conditional_branch)
                 `BCOND_EQ: branch_src <= zero == 1; 

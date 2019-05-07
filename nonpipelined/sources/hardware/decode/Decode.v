@@ -6,6 +6,7 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
     input read_clk,
     input write_clk,
     input reset,
+    input stall, multiplier_done,
     input [`INSTR_LEN-1:0] instruction,
     input [`WORD-1:0] write_data,
     
@@ -18,6 +19,8 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
            alu_src,
            reg_write,
            update_sreg,
+           execute_result_loc,
+           mult_start,
     output [2:0] branch_op,
     output [1:0] mem_to_reg,
     output [3:0] alu_op
@@ -39,6 +42,8 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
     
     control CONTROL(
         .opcode(opcode),
+        .stall(stall),
+        .multiplier_done(multiplier_done),
         .readreg2_control(readreg2_control),
         .branch_op(branch_op),
         .mem_read(mem_read),
@@ -48,7 +53,9 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
         .reg_write(reg_write),
         .alu_op(alu_op),
         .update_sreg(update_sreg),
-        .write_reg_src(write_reg_src)
+        .write_reg_src(write_reg_src),
+        .execute_result_loc(execute_result_loc),
+        .mult_start(mult_start)
     );
     
     wire [4:0] read_reg2;

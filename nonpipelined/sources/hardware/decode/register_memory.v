@@ -12,7 +12,7 @@ module register_memory #(parameter PATH=`REGISTER_FILE)(
     output reg [`WORD-1:0] read_data1, read_data2
 );
     
-    reg [`WORD-1:0] register_mem [`WORD-1:0];
+    reg [`WORD-1:0] register_mem [31:0];
     
     initial $readmemb(PATH, register_mem);
     

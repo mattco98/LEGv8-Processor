@@ -17,3 +17,5 @@
 `define INSTRUCTION_FILE_FUNCTIONS {`FILE_BASE, "functions/instructions"}
 `define REGISTER_FILE_FUNCTIONS    {`FILE_BASE, "functions/registers"}
 `define RAM_FILE_FUNCTIONS         {`FILE_BASE, "functions/ram"}
+
+`define INSTRUCTION_FILE_MULTIPLICATION {`FILE_BASE, "multiply_instr/instructions"}

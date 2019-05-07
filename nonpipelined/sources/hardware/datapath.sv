@@ -3,7 +3,7 @@
 `include "files.vh"
 
 module datapath;
-    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_FUNCTIONS;
+    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_MULTIPLICATION;
     parameter REG_FILE = `REGISTER_FILE_FUNCTIONS;
     parameter RAM_FILE = `RAM_FILE_FUNCTIONS;
 
@@ -31,14 +31,14 @@ module datapath;
     wire [10:0] opcode;
     wire [`WORD-1:0] read_data1, read_data2;
     
-    wire mem_read, mem_write, alu_src, reg_write, update_sreg;
+    wire mem_read, mem_write, alu_src, reg_write, update_sreg, stall, execute_result_loc, mult_start;
     wire [2:0] branch_op;
     wire [1:0] mem_to_reg;
     wire [3:0] alu_op;
     
     // Execute wires
     wire [`WORD-1:0] branch_alu_result, alu_result;
-    wire zero, negative, overflow, carry;
+    wire zero, negative, overflow, carry, multiplier_done;
     wire [31:0] sreg;
     
     // Memory wires
@@ -63,6 +63,8 @@ module datapath;
         .read_clk(decode_read_clk),
         .write_clk(decode_write_clk), 
         .reset(reset),
+        .stall(stall),
+        .multiplier_done(multiplier_done),
         .instruction(instruction), 
         .write_data(write_back),
         .extended_instruction(extended_instruction),
@@ -76,7 +78,9 @@ module datapath;
         .mem_write(mem_write),
         .alu_src(alu_src),
         .reg_write(reg_write),
-        .update_sreg(update_sreg)
+        .update_sreg(update_sreg),
+        .execute_result_loc(execute_result_loc),
+        .mult_start(mult_start)
     );
     
     Execute EXECUTE(
@@ -95,7 +99,11 @@ module datapath;
         .carry(carry),
         .negative(negative),
         .alu_result(alu_result),
-        .update_sreg(update_sreg)
+        .update_sreg(update_sreg),
+        .execute_result_loc(execute_result_loc),
+        .mult_start(mult_start),
+        .stall(stall),
+        .multiplier_done(multiplier_done)
     );
     
     Memory #(RAM_FILE) MEMORY(
@@ -133,7 +141,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 500);
+        #(`CYCLE * 70);
         
         $finish;
     end
