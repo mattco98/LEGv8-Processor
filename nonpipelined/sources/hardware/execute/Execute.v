@@ -11,6 +11,7 @@ module Execute(
     input [10:0] opcode,
     input alu_src, update_sreg, execute_result_loc, mult_start,
     input [3:0] alu_op,
+    input [1:0] mult_mode,
     
     output [`WORD-1:0] branch_alu_result,
                        alu_result,
@@ -74,11 +75,12 @@ module Execute(
         .clk(clk),
         .reset(reset),
         .start(mult_start),
-        .a(read_data1),
-        .b(alu_input_b),
+        .multiplicand(read_data1),
+        .multiplier(alu_input_b),
         .result(multiplier_result),
         .stall(stall),
-        .done(multiplier_done)
+        .done(multiplier_done),
+        .mult_mode(mult_mode)
     );
     
     mux2 ALU_RESULT_MUX(

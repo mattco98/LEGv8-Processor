@@ -53,6 +53,7 @@
 `define MUL     11'b10011011000
 `define ORR     11'b10101010000
 `define ORRI    11'b1011001000X
+`define SMULH   11'b10011011010
 `define STUR    11'b11111000000
 `define STURB   11'b00111000000
 `define STURH   11'b01111000000
@@ -61,6 +62,7 @@
 `define SUBI    11'b1101000100X
 `define SUBS    11'b11101011000
 `define SUBIS   11'b1111000100X
+`define UMULH   11'b10011011110
 
 //////////////////////////////////
 // CONDITIONAL BRANCH RT VALUES //

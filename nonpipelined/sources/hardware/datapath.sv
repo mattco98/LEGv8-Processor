@@ -4,8 +4,8 @@
 
 module datapath;
     parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_MULTIPLICATION;
-    parameter REG_FILE = `REGISTER_FILE_FUNCTIONS;
-    parameter RAM_FILE = `RAM_FILE_FUNCTIONS;
+    parameter REG_FILE = `REGISTER_FILE_MULTIPLICATION;
+    parameter RAM_FILE = `RAM_FILE;
 
     // Clocks
     wire clk,
@@ -33,7 +33,7 @@ module datapath;
     
     wire mem_read, mem_write, alu_src, reg_write, update_sreg, stall, execute_result_loc, mult_start;
     wire [2:0] branch_op;
-    wire [1:0] mem_to_reg;
+    wire [1:0] mem_to_reg, mult_mode;
     wire [3:0] alu_op;
     
     // Execute wires
@@ -77,6 +77,7 @@ module datapath;
         .mem_to_reg(mem_to_reg),
         .mem_write(mem_write),
         .alu_src(alu_src),
+        .mult_mode(mult_mode),
         .reg_write(reg_write),
         .update_sreg(update_sreg),
         .execute_result_loc(execute_result_loc),
@@ -103,7 +104,8 @@ module datapath;
         .execute_result_loc(execute_result_loc),
         .mult_start(mult_start),
         .stall(stall),
-        .multiplier_done(multiplier_done)
+        .multiplier_done(multiplier_done),
+        .mult_mode(mult_mode)
     );
     
     Memory #(RAM_FILE) MEMORY(
@@ -142,7 +144,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 70);
+        #(`CYCLE * 210);
         
         $finish;
     end

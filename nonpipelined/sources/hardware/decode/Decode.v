@@ -22,7 +22,7 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
            execute_result_loc,
            mult_start,
     output [2:0] branch_op,
-    output [1:0] mem_to_reg,
+    output [1:0] mem_to_reg, mult_mode,
     output [3:0] alu_op
 );
 
@@ -52,6 +52,7 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
         .alu_src(alu_src),
         .reg_write(reg_write),
         .alu_op(alu_op),
+        .mult_mode(mult_mode),
         .update_sreg(update_sreg),
         .write_reg_src(write_reg_src),
         .execute_result_loc(execute_result_loc),

@@ -14,7 +14,7 @@ module control(
                write_reg_src,
                execute_result_loc,
                mult_start,
-    output reg [1:0] mem_to_reg,
+    output reg [1:0] mem_to_reg, mult_mode,
     output reg [3:0] alu_op, 
     output reg [2:0] branch_op // 000 => no branch, 001 => branch, 010 => branch_conditionally, 011 => branch_if_zero, 100 => branch_if_not_zero, 110 => pc doesn't increment
 );
@@ -118,6 +118,27 @@ module control(
                         execute_result_loc <= 1;
                         reg_write <= 1;
                     end else begin
+                        mult_mode <= 'b00;
+                        mult_start <= 1;
+                        branch_op <= 'b110;
+                    end
+                end
+                `UMULH: begin
+                    if (multiplier_done) begin
+                        execute_result_loc <= 1;
+                        reg_write <= 1;
+                    end else begin
+                        mult_mode <= 'b01;
+                        mult_start <= 1;
+                        branch_op <= 'b110;
+                    end
+                end
+                `SMULH: begin
+                    if (multiplier_done) begin
+                        execute_result_loc <= 1;
+                        reg_write <= 1;
+                    end else begin
+                        mult_mode <= 'b10;
                         mult_start <= 1;
                         branch_op <= 'b110;
                     end

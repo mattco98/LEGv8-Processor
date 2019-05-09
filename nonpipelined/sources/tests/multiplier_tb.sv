@@ -5,23 +5,34 @@
 module multiplier_tb;
 
     wire clk;
-    reg  start;
-    reg  [`WORD-1:0] a, b;
-    wire [`WORD-1:0] result;
     wire stall;
+    reg reset;
+    reg [1:0] mult_mode;
+    reg [63:0] multiplicand, multiplier;
+    reg start;
+    wire [64:0] result;
+    wire done;
     
     oscillator clk_gen(clk);
 
-    multiplier #(`WORD) UUT(.*);
+    multiplier UUT(.*);
     
     initial begin
-        a <= 'd27;
-        b <= 'd92;
+        mult_mode <= 'd00;
+        multiplicand <= -'d78;
+        multiplier <= 'd99;
+        reset <= 1;
+        start <= 0;
         #`CYCLE;
-        
+        reset <= 0;
+        #`CYCLE;
         start <= 1;
+        #`CYCLE;
+        start <= 0;
         
-        #(`CYCLE*65);
+        #(`CYCLE*50);
+    
+    
         $finish;
     end
 

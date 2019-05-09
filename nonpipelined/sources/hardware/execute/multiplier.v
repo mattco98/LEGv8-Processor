@@ -1,92 +1,57 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
 
-
-module multiplier #(parameter SIZE=`WORD) (
+// http://www.ece.lsu.edu/ee3755/2002/l07.html
+// Taken from imult_Booth_radix_4 module
+module multiplier#(parameter SIZE=`WORD)(
     input  clk,
-    input  start,
-    input  reset,
-    input  [SIZE-1:0] a,
-                      b,
-    output reg [SIZE-1:0] result,
-    output reg stall,
-    output reg done
+           reset,
+           start,
+    input  [1:0] mult_mode,
+    input  [SIZE-1:0] multiplicand, multiplier,
+    output [SIZE-1:0] result,
+    output done,
+    output stall
 );
 
-    reg active;
-    reg beginning;
-    reg [SIZE-1:0] multiplicand;
-    reg [SIZE*2-1:0] product;
-    reg [SIZE:0] i;
+    reg [SIZE*2:0] product;
+    reg [10:0] bit;
+    reg carry;
+    reg stall_internal;
+    wire [SIZE:0] multsx = {multiplicand[SIZE-1],multiplicand};
+   
+    // TODO: Do different things for UMULH (mult_mode == 'b01) and SMULH (mult_mode == 'b10) ???
+    assign result = (mult_mode == 'b00) ? product[SIZE-1:0] : product[SIZE*2-1:SIZE]; 
+    assign done = !bit && stall_internal;
+    assign stall = bit != 0;
     
-    always @(posedge reset) begin
-        stall <= 0;
-        result <= 'b0;
-        active <= 0;
-        beginning <= 1;
-    end
+    always @(posedge clk, reset) begin
+        if (reset) begin
+            product = 0;
+            bit = 0;
+            carry = 0;
+            stall_internal = 0;
+        end else if (start) begin
+            bit = SIZE/2;
+            product = {{(SIZE + 1){1'd0}}, multiplier};
+            carry = 0;
+            stall_internal = 1;
+         end else if (bit) begin
+            case({product[1:0], carry})
+              3'b001: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] + multsx;
+              3'b010: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] + multsx;
+              3'b011: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] + 2 * multiplicand;
+              3'b100: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] - 2 * multiplicand;
+              3'b101: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] - multsx;
+              3'b110: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] - multsx;
+            endcase
     
-    always @(posedge clk) begin
-        if (start) begin
-            if (beginning) begin
-                beginning <= 0;
-                active <= 1;
-                multiplicand <= b;
-                product <= {{SIZE{1'b0}}, a};
-                i <= 0;
-                stall <= 1;
-            end
-        end else if (active) begin
-            if (i == SIZE) begin
-                stall <= 0;
-                active <= 0;
-                result <= product[SIZE-1:0];
-                done <= 1;
-            end else begin
-                product <= product[0] == 1'b1 ? 
-                    (({(product[SIZE*2-1:SIZE] + multiplicand), product[SIZE-1:0]}) >> 1) : 
-                    (product >> 1);
-                i <= i + 1;
-            end
-        end else if (~active) begin
-            done <= 0;
-            stall <= 0;
-            beginning <= 1;
+            carry = product[1];
+            product = {{2{product[SIZE*2]}}, product[SIZE*2:2]};
+            bit = bit - 1;
+        end else if (stall_internal) begin
+            stall_internal = 0;
         end
     end
-    
-//    always @(posedge start) begin
-//        active <= 1;
-//        multiplicand <= b;
-//        product <= {{SIZE{1'b0}}, a};
-//        i <= 0;
-//        #(`CYCLE/2) stall <= 1; // TODO: Is there a way to eliminate this delay?
-//    end
-
-//    always @(posedge clk) begin
-//        if (active) begin
-//            if (i == SIZE) begin
-//                stall <= 0;
-//                active <= 0;
-//                result <= product[SIZE-1:0];
-//                done <= 1;
-//            end else begin
-//                product <= product[0] == 1'b1 ? 
-//                    (({(product[SIZE*2-1:SIZE] + multiplicand), product[SIZE-1:0]}) >> 1) : 
-//                    (product >> 1);
-//                i <= i + 1;
-//            end
-//        end else begin
-//            done <= 0;
-//            stall <= 0;
-//        end
-//    end
 
 endmodule
-
-
-
-
-
-
-

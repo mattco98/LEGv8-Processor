@@ -19,3 +19,4 @@
 `define RAM_FILE_FUNCTIONS         {`FILE_BASE, "functions/ram"}
 
 `define INSTRUCTION_FILE_MULTIPLICATION {`FILE_BASE, "multiply_instr/instructions"}
+`define REGISTER_FILE_MULTIPLICATION    {`FILE_BASE, "multiply_instr/registers"}
