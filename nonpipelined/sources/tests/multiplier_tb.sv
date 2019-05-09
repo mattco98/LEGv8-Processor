@@ -11,11 +11,11 @@ module multiplier_tb;
     reg [7:0] multiplicand, multiplier;
     reg start;
     wire [7:0] result;
-    wire ready;
+    wire done;
     
     oscillator clk_gen(clk);
 
-    multiplier UUT(.*);
+    multiplier #(8) UUT(.*);
     
     initial begin
         mult_mode <= 'd10;
