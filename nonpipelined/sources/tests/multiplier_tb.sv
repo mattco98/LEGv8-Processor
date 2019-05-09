@@ -8,19 +8,19 @@ module multiplier_tb;
     wire stall;
     reg reset;
     reg [1:0] mult_mode;
-    reg [63:0] multiplicand, multiplier;
+    reg [7:0] multiplicand, multiplier;
     reg start;
-    wire [64:0] result;
-    wire done;
+    wire [7:0] result;
+    wire ready;
     
     oscillator clk_gen(clk);
 
     multiplier UUT(.*);
     
     initial begin
-        mult_mode <= 'd00;
-        multiplicand <= -'d78;
-        multiplier <= 'd99;
+        mult_mode <= 'd10;
+        multiplicand <= 'b00000101;
+        multiplier <= 'b00001100;
         reset <= 1;
         start <= 0;
         #`CYCLE;
@@ -30,7 +30,7 @@ module multiplier_tb;
         #`CYCLE;
         start <= 0;
         
-        #(`CYCLE*50);
+        #(`CYCLE*70);
     
     
         $finish;
