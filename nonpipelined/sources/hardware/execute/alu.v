@@ -1,25 +1,25 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
 
+
 module alu(
-    input signed [`WORD-1:0] a,
-    input signed [`WORD-1:0] b,
-    input [3:0] alu_op,
+    input  signed [`WORD-1:0] a,
+    input  signed [`WORD-1:0] b,
+    input         [3:0]       alu_op,
     output signed [`WORD-1:0] result,
-    output zero,
-    output negative,
-    output carry,
-    output reg overflow
+    output                    zero,
+    output                    negative,
+    output                    carry,
+    output reg                overflow
 );
     
-    reg signed [`WORD:0] buff;
-    reg is_signed = 1; // TODO: Will need to add logic here to determine signed-ness from opcode.
-                       // Right now, every number is interpreted as signed
+    reg  signed [`WORD:0] buff;
+    wire buff_msb = buff[`WORD]; 
 
     assign result = buff[`WORD-1:0];
     assign zero = result == 0;
     assign negative = result < 0;
-    assign carry = is_signed ? 0 : buff[`WORD];
+    assign carry = 1; // Numbers are always signed
 
     always @* begin
         overflow = 0;
@@ -31,13 +31,13 @@ module alu(
                 buff = a | b;
             `ALU_ADD: begin      
                 buff = a + b;
-                if (a > 0 && b > 0 && buff[`WORD-1] == 1) overflow = 1;
-                else if (a < 0 && b < 0 && buff[`WORD-1] == 0) overflow = 1;          
+                if (a > 0 && b > 0 && buff_msb == 1) overflow = 1;
+                else if (a < 0 && b < 0 && buff_msb == 0) overflow = 1;          
             end
             `ALU_SUBTRACT: begin
                 buff = a - b;
-                if (a > 0 && b < 0 && buff[`WORD-1] == 1) overflow = 1;
-                else if (a < 0 && b > 0 && buff[`WORD-1] == 0) overflow = 1;
+                if (a > 0 && b < 0 && buff_msb == 1) overflow = 1;
+                else if (a < 0 && b > 0 && buff_msb == 0) overflow = 1;
             end
             `ALU_PASS_B:   
                 buff = b;

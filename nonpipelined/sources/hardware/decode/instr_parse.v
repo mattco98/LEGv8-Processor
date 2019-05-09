@@ -1,11 +1,14 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
 
+
 module instr_parse(
-    input [`INSTR_LEN-1:0] instruction,
-    output [4:0]  rm, rn, rd,
-    output [8:0]  address,
-    output [10:0] opcode
+    input  [`INSTR_LEN-1:0] instruction,
+    output [4:0]            rm,
+    output [4:0]            rn,
+    output [4:0]            rd,  
+    output [8:0]            address,
+    output [10:0]           opcode
 );
 
     assign opcode  = instruction[31:21];

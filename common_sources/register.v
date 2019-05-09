@@ -1,16 +1,17 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
 
+
 module register #(parameter SIZE=`WORD) (
-    input clk,
-    input reset,
-    input [SIZE-1:0] D,
+    input                 clk,
+    input                 reset,
+    input      [SIZE-1:0] D,
     output reg [SIZE-1:0] Q
 );
 
-    initial Q <= `WORD'b0;
+    initial Q <= 'b0;
     
-    always @(posedge(clk), posedge(reset))
-        Q <= (reset == 1'b1) ? `WORD'b0 : D;
+    always @(posedge clk, reset)
+        Q <= (reset == 1'b1 ? 'b0 : D);
 
 endmodule

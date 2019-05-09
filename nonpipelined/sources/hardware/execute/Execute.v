@@ -1,49 +1,52 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
 
+
 module Execute(
-    input clk,
-          reset,
-    input [`WORD-1:0] pc,
-                      sign_extended_instr,
-                      read_data1,
-                      read_data2,
-    input [10:0] opcode,
-    input alu_src, update_sreg, execute_result_loc, mult_start,
-    input [3:0] alu_op,
-    input [1:0] mult_mode,
-    
+    input              clk,
+    input              reset,
+    input  [`WORD-1:0] pc,
+    input  [`WORD-1:0] sign_extended_instr,
+    input  [`WORD-1:0] read_data1,
+    input  [`WORD-1:0] read_data2,
+    input  [10:0]      opcode,
+    input              alu_src, 
+    input              update_sreg, 
+    input              execute_result_loc, 
+    input              mult_start,
+    input  [3:0]       alu_op,
+    input  [1:0]       mult_mode,
     output [`WORD-1:0] branch_alu_result,
-                       alu_result,
-    output zero, negative, overflow, carry, stall, multiplier_done
+    output [`WORD-1:0] alu_result,
+    output             zero, 
+    output             negative,
+    output             overflow, 
+    output             carry, 
+    output             stall, 
+    output             multiplier_done
 );
 
     // Branch ALU
-    wire [`WORD-1:0] shifted_instr;
-    
-    left_shift #(`WORD) LEFT_SHIFT(
-        .in(sign_extended_instr),
-        .out(shifted_instr)
-    );
-    
-    adder ADDER(
-        .a(pc),
-        .b(shifted_instr),
-        .out(branch_alu_result)
-    );
+    wire [`WORD-1:0] shifted_instr = sign_extended_instr << 2;
+    assign branch_alu_result       = pc + shifted_instr;
     
     // ALU
-    wire [`WORD-1:0] alu_input_b, alu_result_buff;
-    wire negative_internal, zero_internal, carry_internal, overflow_internal;
+    wire [`WORD-1:0] alu_input_b;
+    wire [`WORD-1:0] alu_result_buff;
+    wire             negative_internal;
+    wire             zero_internal; 
+    wire             carry_internal;
+    wire             overflow_internal;
+    wire [`WORD-1:0] multiplier_result;
     
-    mux2 #(`WORD) ALU_MUX(
+    mux2 #(.SIZE(`WORD)) mux2_alu(
         .a(read_data2),
         .b(sign_extended_instr),
         .control(alu_src),
         .out(alu_input_b)
     );
     
-    alu MAIN_ALU(
+    alu alu(
         .a(read_data1),
         .b(alu_input_b),
         .alu_op(alu_op),
@@ -54,7 +57,7 @@ module Execute(
         .result(alu_result_buff)
     );
     
-    status_register SREG(
+    status_register status_register(
         .clk(clk),
         .reset(reset),
         .update_sreg(update_sreg),
@@ -69,9 +72,8 @@ module Execute(
     );
     
     // Multiplier
-    wire [`WORD-1:0] multiplier_result;
     
-    multiplier MULTIPLIER(
+    multiplier multiplier(
         .clk(clk),
         .reset(reset),
         .start(mult_start),
@@ -83,7 +85,7 @@ module Execute(
         .mult_mode(mult_mode)
     );
     
-    mux2 ALU_RESULT_MUX(
+    mux2 mux2_alu_result(
         .a(alu_result_buff),
         .b(multiplier_result),
         .control(execute_result_loc),

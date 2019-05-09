@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
 
+
 module oscillator(
     output reg clk
 );

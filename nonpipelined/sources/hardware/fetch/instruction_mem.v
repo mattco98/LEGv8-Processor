@@ -2,19 +2,20 @@
 `include "files.vh"
 `include "constants.vh"
 
-module instruction_mem #(parameter PATH=`INSTRUCTION_FILE, parameter SIZE=1024) (
-    input clk, 
-          reset,
-    input [`WORD-1:0] address,
+
+module instruction_mem #(parameter PATH=`INSTRUCTION_FILE, 
+                         parameter SIZE=1024) (
+    input                       clk,
+    input                       reset,
+    input      [`WORD-1:0]      address,
     output reg [`INSTR_LEN-1:0] instruction
 );
 
     reg [`INSTR_LEN-1:0] instruction_memory [SIZE-1:0];
     
-    initial 
-        $readmemb(PATH, instruction_memory);
+    initial $readmemb(PATH, instruction_memory);
     
-    always @(posedge clk or posedge reset) 
+    always @(posedge clk, reset) 
         if (~reset)
             instruction <= instruction_memory[address / 4];
 

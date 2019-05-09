@@ -2,23 +2,29 @@
 `include "constants.vh"
 `include "files.vh"
 
+
 module datapath;
-    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_MULTIPLICATION;
-    parameter REG_FILE = `REGISTER_FILE_MULTIPLICATION;
-    parameter RAM_FILE = `RAM_FILE;
+    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_DIVISION_SIGNED;
+    parameter REG_FILE         = `REGISTER_FILE_DIVISION_SIGNED;
+    parameter RAM_FILE         = `RAM_FILE_DIVISION_SIGNED;
+    parameter CYCLES           = 100;
 
     // Clocks
-    wire clk,
-         instr_mem_clk,
-         decode_read_clk,
-         decode_write_clk,
-         memory_clk;
+    wire clk;
+    wire clk_delayed_1;
+    wire clk_delayed_2;
+    wire clk_delayed_3;
+    wire clk_delayed_4;
+    wire clk_delayed_5;
+    wire clk_delayed_6;
          
     oscillator clk_gen(clk);
-    delay #(1) instr_mem_clk_gen(clk, instr_mem_clk);
-    delay #(2) read_clk_gen(clk, decode_read_clk);
-    delay #(3) memory_clk_gen(clk, memory_clk);
-    delay #(4) write_clk_gen(clk, decode_write_clk);
+    delay #(1) clk_delayed_1_gen(clk, clk_delayed_1);
+    delay #(2) clk_delayed_2_gen(clk, clk_delayed_2);
+    delay #(3) clk_delayed_3_gen(clk, clk_delayed_3);
+    delay #(4) clk_delayed_4_gen(clk, clk_delayed_4);
+    delay #(5) clk_delayed_5_gen(clk, clk_delayed_5);
+    delay #(6) clk_delayed_6_gen(clk, clk_delayed_6);
     
     // Fetch wires
     reg  reset;
@@ -47,9 +53,9 @@ module datapath;
     // Writeback wires
     wire [`WORD-1:0] write_back;
     
-    Fetch #(INSTRUCTION_FILE) FETCH(
+    Fetch #(.PATH(INSTRUCTION_FILE)) Fetch(
         .clk(clk),
-        .instr_mem_clk(instr_mem_clk), 
+        .read_clk(clk_delayed_1), 
         .reset(reset),
         .pc_src(pc_src), 
         .branch_target(branch_alu_result),
@@ -59,9 +65,9 @@ module datapath;
         .incremented_pc(incremented_pc)
     );
     
-    Decode #(REG_FILE) DECODE(
-        .read_clk(decode_read_clk),
-        .write_clk(decode_write_clk), 
+    Decode #(.PATH(REG_FILE)) Decode(
+        .read_clk(clk_delayed_2),
+        .write_clk(clk_delayed_6), 
         .reset(reset),
         .stall(stall),
         .multiplier_done(multiplier_done),
@@ -84,8 +90,8 @@ module datapath;
         .mult_start(mult_start)
     );
     
-    Execute EXECUTE(
-        .clk(memory_clk), // TODO: Rename clk signals
+    Execute Execute(
+        .clk(clk_delayed_3),
         .reset(reset),
         .pc(pc),
         .sign_extended_instr(extended_instruction),
@@ -108,9 +114,9 @@ module datapath;
         .mult_mode(mult_mode)
     );
     
-    Memory #(RAM_FILE) MEMORY(
-        .read_clk(memory_clk),
-        .write_clk(memory_clk),
+    Memory #(.PATH(RAM_FILE)) Memory(
+        .read_clk(clk_delayed_4),
+        .write_clk(clk_delayed_5),
         .reset(reset),
         .opcode(opcode),
         .rt(instruction[4:0]),
@@ -127,7 +133,7 @@ module datapath;
         .pc_src(pc_src)
     );
     
-    Writeback WRITEBACK(
+    Writeback Writeback(
         .alu_result(alu_result),
         .read_data(read_data),
         .mem_to_reg(mem_to_reg),
@@ -144,7 +150,7 @@ module datapath;
         
         // Continue running
         reset <= 0;
-        #(`CYCLE * 210);
+        #(`CYCLE * CYCLES);
         
         $finish;
     end

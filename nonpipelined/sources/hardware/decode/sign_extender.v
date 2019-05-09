@@ -1,13 +1,14 @@
 `timescale 1ns / 1ps
 `include "constants.vh"
 
+
 module sign_extender(
-    input [`INSTR_LEN-1:0] instruction,
-    output reg [`WORD-1:0] out
+    input      [`INSTR_LEN-1:0] instruction,
+    output reg [`WORD-1:0]      out
 );
 
-    always @* begin
-        casex(instruction[31:21])
+    always @*
+        casez(instruction[31:21])
             `LSL, `LSR:
                 out <= {{(`WORD-6){instruction[15]}}, instruction[15:10]};
             `ADDI, `ANDI, `EORI, `ORRI, `SUBI, `CMPI:
@@ -25,6 +26,5 @@ module sign_extender(
             default:
                 out <= {{(`WORD-`INSTR_LEN){1'b0}}, instruction};
         endcase
-    end
 
 endmodule

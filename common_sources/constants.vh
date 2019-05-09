@@ -23,23 +23,23 @@
 // OPCODES //
 /////////////
 `define ADD     11'b10001011000
-`define ADDI    11'b1001000100X
+`define ADDI    11'b1001000100?
 `define ADDS    11'b10101011000
-`define ADDIS   11'b1011000100X
+`define ADDIS   11'b1011000100?
 `define AND     11'b10001010000
-`define ANDI    11'b1001001000X
+`define ANDI    11'b1001001000?
 `define ANDS    11'b11101010000
-`define ANDIS   11'b1111001000X
-`define B       11'b000101XXXXX
-`define BL      11'b100101XXXXX
+`define ANDIS   11'b1111001000?
+`define B       11'b000101?????
+`define BL      11'b100101?????
 `define BR      11'b11010110000
-`define BCOND   11'b01010100XXX
-`define CBZ     11'b10110100XXX
-`define CBNZ    11'b10110101XXX
+`define BCOND   11'b01010100???
+`define CBZ     11'b10110100???
+`define CBNZ    11'b10110101???
 `define CMP     11'b01001011011
-`define CMPI    11'b1100001110X
+`define CMPI    11'b1100001110?
 `define EOR     11'b11001010000
-`define EORI    11'b1101001000X
+`define EORI    11'b1101001000?
 `define LDA     11'b10010110101
 `define LDUR    11'b11111000010
 `define LDURB   11'b00111000010
@@ -48,20 +48,20 @@
 `define LSL     11'b11010011011
 `define LSR     11'b11010011010
 `define MOV     11'b10010011110
-`define MOVK    11'b111100101XX
-`define MOVZ    11'b110100101XX
+`define MOVK    11'b111100101??
+`define MOVZ    11'b110100101??
 `define MUL     11'b10011011000
 `define ORR     11'b10101010000
-`define ORRI    11'b1011001000X
+`define ORRI    11'b1011001000?
 `define SMULH   11'b10011011010
 `define STUR    11'b11111000000
 `define STURB   11'b00111000000
 `define STURH   11'b01111000000
 `define STURW   11'b10111000000
 `define SUB     11'b11001011000
-`define SUBI    11'b1101000100X
+`define SUBI    11'b1101000100?
 `define SUBS    11'b11101011000
-`define SUBIS   11'b1111000100X
+`define SUBIS   11'b1111000100?
 `define UMULH   11'b10011011110
 
 //////////////////////////////////
@@ -93,4 +93,5 @@
 `define BCOND_OP_ZERO    3'b011
 `define BCOND_OP_NZERO   3'b100
 `define BCOND_OP_ALU     3'b101
+`define BCOND_OP_NOINC   3'b110
 

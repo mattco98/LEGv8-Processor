@@ -3,37 +3,35 @@
 
 
 module multiplier #(parameter SIZE=`WORD)(
-    input clk,
-          reset,
-          start,
-    input [SIZE-1:0] multiplicand, 
-                     multiplier,
-    input [1:0] mult_mode,
+    input             clk,
+    input             reset,
+    input             start,
+    input  [SIZE-1:0] multiplicand, 
+    input  [SIZE-1:0] multiplier,
+    input  [1:0]      mult_mode,
     output [SIZE-1:0] result,
-    output reg done,
-    output stall
+    output reg        done,
+    output            stall
 );
 
-    reg [SIZE*2:0]    product;
-    assign result = reset ? 'b0 : (mult_mode == 2'b00 ? product[SIZE-1:0] : product[SIZE*2-1:SIZE]);
-
+    reg [SIZE*2:0] product;
     reg [SIZE/2:0] bit; 
-    //assign done = !bit && stall;
-    assign stall = bit != 0;
-    reg carry;
-
-    wire [SIZE:0]   multsx = {mult_mode == 2'b10 ? multiplicand[SIZE-1] : 1'b0, multiplicand};
+    reg            carry;
     
-    always @(posedge reset) begin
+    wire [SIZE:0] multsx = {mult_mode == 2'b10 ? multiplicand[SIZE-1] : 1'b0, multiplicand};
+    assign        result = reset ? 'b0 : (mult_mode == 2'b00 ? product[SIZE-1:0] : product[SIZE*2-1:SIZE]);
+    assign        stall  = bit != 0;
+    
+    always @(posedge reset) 
         bit = 0;
-    end
 
-    always @(posedge clk) begin
+    always @(posedge clk)
         if (start) begin
-            bit = SIZE/2;
+            bit     = SIZE/2;
             product = {{(SIZE+1){1'd0}}, multiplier};
-            carry = 0;
-        end else if (bit) begin
+            carry   = 0;
+        end 
+        else if (bit) begin
             case ({product[1:0], carry})
                 3'b001: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] + multsx;
                 3'b010: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] + multsx;
@@ -43,13 +41,12 @@ module multiplier #(parameter SIZE=`WORD)(
                 3'b110: product[SIZE*2:SIZE] = product[SIZE*2:SIZE] - multsx;
             endcase
             
-            carry = product[1];
+            carry   = product[1];
             product = {{2{product[SIZE*2]}}, product[SIZE*2:2]};
-            bit = bit - 1;
-            done = bit == 0;
-        end else if (done)
+            bit     = bit - 1;
+            done    = bit == 0;
+        end 
+        else if (done)
             done = 0;
-    end
 
 endmodule
-
