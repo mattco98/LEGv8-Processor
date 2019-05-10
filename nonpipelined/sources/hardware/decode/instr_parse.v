@@ -7,6 +7,7 @@ module instr_parse(
     output [4:0]            rm,
     output [4:0]            rn,
     output [4:0]            rd,  
+    output [5:0]            shamt,  
     output [8:0]            address,
     output [10:0]           opcode
 );
@@ -16,5 +17,6 @@ module instr_parse(
     assign rm      = instruction[20:16];
     assign rn      = instruction[9:5];
     assign rd      = instruction[4:0];
+    assign shamt   = instruction[15:10];
 
 endmodule

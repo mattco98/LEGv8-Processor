@@ -9,6 +9,7 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
     input                   reset,
     input                   stall, 
     input                   multiplier_done,
+    input                   divider_done,
     input  [`INSTR_LEN-1:0] instruction,
     input  [`WORD-1:0]      write_data,
     
@@ -21,11 +22,13 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
     output                  alu_src,
     output                  reg_write,
     output                  update_sreg,
-    output                  execute_result_loc,
+    output [1:0]            execute_result_loc,
     output                  mult_start,
+    output                  div_start,
     output [2:0]            branch_op,
     output [1:0]            mem_to_reg,
     output [1:0]            mult_mode,
+    output                  div_mode,
     output [3:0]            alu_op
 );
 
@@ -33,6 +36,7 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
     wire [4:0] rn;
     wire [4:0] rd;
     wire [8:0] address;
+    wire [5:0] shamt;
     
     instr_parse instr_parse(
         .instruction(instruction),
@@ -40,7 +44,8 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
         .rn(rn),
         .rd(rd),
         .address(address),
-        .opcode(opcode)
+        .opcode(opcode),
+        .shamt(shamt)
     );
     
     wire readreg2_loc;
@@ -50,6 +55,7 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
     
     control control(
         .opcode(opcode),
+        .shamt(shamt),
         .stall(stall),
         .multiplier_done(multiplier_done),
         .readreg2_loc(readreg2_loc),
@@ -64,7 +70,10 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
         .update_sreg(update_sreg),
         .write_reg_src(write_reg_src),
         .execute_result_loc(execute_result_loc),
-        .mult_start(mult_start)
+        .mult_start(mult_start),
+        .div_start(div_start),
+        .div_mode(div_mode),
+        .divider_done(divider_done)
     );
     
     mux2 #(.SIZE(5)) mux2_read_reg2(

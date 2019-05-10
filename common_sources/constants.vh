@@ -38,6 +38,7 @@
 `define CBNZ    11'b10110101???
 `define CMP     11'b01001011011
 `define CMPI    11'b1100001110?
+`define DIV     11'b10011010110
 `define EOR     11'b11001010000
 `define EORI    11'b1101001000?
 `define LDA     11'b10010110101
@@ -63,6 +64,9 @@
 `define SUBS    11'b11101011000
 `define SUBIS   11'b1111000100?
 `define UMULH   11'b10011011110
+
+`define UDIV_SHAMT 6'b000011
+`define SDIV_SHAMT 6'b000010
 
 //////////////////////////////////
 // CONDITIONAL BRANCH RT VALUES //

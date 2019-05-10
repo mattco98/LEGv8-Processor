@@ -80,9 +80,9 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] LDURS
 - [ ] LDURD
 - [x] MUL
-- [ ] SDIV
+- [x] SDIV
 - [x] SMULH
 - [ ] STURS
 - [ ] STURD
-- [ ] UDIV
+- [x] UDIV
 - [x] UMULH

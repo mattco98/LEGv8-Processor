@@ -12,10 +12,12 @@ module Execute(
     input  [10:0]      opcode,
     input              alu_src, 
     input              update_sreg, 
-    input              execute_result_loc, 
+    input  [1:0]       execute_result_loc, 
     input              mult_start,
+    input              div_start,
     input  [3:0]       alu_op,
     input  [1:0]       mult_mode,
+    input              div_mode,
     output [`WORD-1:0] branch_alu_result,
     output [`WORD-1:0] alu_result,
     output             zero, 
@@ -23,7 +25,8 @@ module Execute(
     output             overflow, 
     output             carry, 
     output             stall, 
-    output             multiplier_done
+    output             multiplier_done,
+    output             divider_done
 );
 
     // Branch ALU
@@ -38,6 +41,7 @@ module Execute(
     wire             carry_internal;
     wire             overflow_internal;
     wire [`WORD-1:0] multiplier_result;
+    wire [`WORD-1:0] divider_result;
     
     mux2 #(.SIZE(`WORD)) mux2_alu(
         .a(read_data2),
@@ -73,7 +77,7 @@ module Execute(
     
     // Multiplier
     
-    multiplier multiplier(
+    multiplier #(.SIZE(`WORD)) multiplier(
         .clk(clk),
         .reset(reset),
         .start(mult_start),
@@ -85,9 +89,22 @@ module Execute(
         .mult_mode(mult_mode)
     );
     
-    mux2 mux2_alu_result(
+    divider #(.SIZE(`WORD)) divider(
+        .clk(clk),
+        .reset(reset),
+        .start(div_start),
+        .dividend(read_data1),
+        .divisor(alu_input_b),
+        .quotient(divider_result),
+        .stall(stall),
+        .done(divider_done),
+        .is_signed(div_mode)
+    );
+    
+    mux3 mux3_alu_result(
         .a(alu_result_buff),
         .b(multiplier_result),
+        .c(divider_result),
         .control(execute_result_loc),
         .out(alu_result)
     );

@@ -1,3 +1,0 @@
-ADDI X9,  XZR, #29
-ADDI X10, XZR, #97
-MUL  X11, X9,  X10

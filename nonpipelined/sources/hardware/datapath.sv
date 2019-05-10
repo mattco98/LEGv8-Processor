@@ -27,25 +27,43 @@ module datapath;
     delay #(6) clk_delayed_6_gen(clk, clk_delayed_6);
     
     // Fetch wires
-    reg  reset;
-    wire [1:0] pc_src;
+    reg                   reset;
+    wire [1:0]            pc_src;
     wire [`INSTR_LEN-1:0] instruction;
-    wire [`WORD-1:0] pc, incremented_pc;
+    wire [`WORD-1:0]      pc;
+    wire [`WORD-1:0]      incremented_pc;
     
     // Decode wires
     wire [`WORD-1:0] extended_instruction;
-    wire [10:0] opcode;
-    wire [`WORD-1:0] read_data1, read_data2;
+    wire [10:0]      opcode;
+    wire [`WORD-1:0] read_data1;
+    wire [`WORD-1:0] read_data2;
     
-    wire mem_read, mem_write, alu_src, reg_write, update_sreg, stall, execute_result_loc, mult_start;
+    wire       mem_read;
+    wire       mem_write;
+    wire       alu_src;
+    wire       reg_write;
+    wire       update_sreg;
+    wire       stall;
+    wire       mult_start;
+    wire       div_start;
+    wire       div_mode;
     wire [2:0] branch_op;
-    wire [1:0] mem_to_reg, mult_mode;
+    wire [1:0] mem_to_reg;
+    wire [1:0] mult_mode;
+    wire [1:0] execute_result_loc;
     wire [3:0] alu_op;
     
     // Execute wires
-    wire [`WORD-1:0] branch_alu_result, alu_result;
-    wire zero, negative, overflow, carry, multiplier_done;
-    wire [31:0] sreg;
+    wire [`WORD-1:0] branch_alu_result;
+    wire [`WORD-1:0] alu_result;
+    wire             zero;
+    wire             negative;
+    wire             overflow;
+    wire             carry;
+    wire             multiplier_done;
+    wire             divider_done;
+    wire [31:0]      sreg;
     
     // Memory wires
     wire [`WORD-1:0] read_data;
@@ -87,7 +105,10 @@ module datapath;
         .reg_write(reg_write),
         .update_sreg(update_sreg),
         .execute_result_loc(execute_result_loc),
-        .mult_start(mult_start)
+        .mult_start(mult_start),
+        .div_start(div_start),
+        .div_mode(div_mode),
+        .divider_done(divider_done)
     );
     
     Execute Execute(
@@ -111,7 +132,10 @@ module datapath;
         .mult_start(mult_start),
         .stall(stall),
         .multiplier_done(multiplier_done),
-        .mult_mode(mult_mode)
+        .mult_mode(mult_mode),
+        .divider_done(divider_done),
+        .div_mode(div_mode),
+        .div_start(div_start)
     );
     
     Memory #(.PATH(RAM_FILE)) Memory(

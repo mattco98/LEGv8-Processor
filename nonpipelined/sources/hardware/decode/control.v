@@ -4,17 +4,21 @@
 
 module control(
     input      [10:0] opcode,
+    input      [5:0]  shamt,
     input             stall,
     input             multiplier_done,
+    input             divider_done,
     output reg        readreg2_loc,
     output reg        write_reg_src,
     output reg        reg_write,
     output reg        alu_src,
     output reg [3:0]  alu_op, 
-    output reg        execute_result_loc,
+    output reg [1:0]  execute_result_loc,
     output reg        update_sreg, 
     output reg        mult_start,
     output reg [1:0]  mult_mode,
+    output reg        div_start,
+    output reg        div_mode,
     output reg [2:0]  branch_op,
     output reg        mem_read,
     output reg        mem_write,
@@ -27,7 +31,7 @@ module control(
         write_reg_src <= 0;
         reg_write <= 0;
         alu_src <= 0;
-        execute_result_loc <= 0;
+        execute_result_loc <= 'b00;
         update_sreg <= 0;
         mult_start <= 0;
         mult_mode <= 'b00;
@@ -35,6 +39,8 @@ module control(
         mem_read <= 0;
         mem_write <= 0;
         mem_to_reg <= 'b00;
+        div_start <= 0;
+        div_mode <= 0;
         
         // Set bits to 1
         if (~stall) begin
@@ -119,7 +125,7 @@ module control(
                 `MUL: begin
                     if (multiplier_done) begin
                         reg_write <= 1;
-                        execute_result_loc <= 1;
+                        execute_result_loc <= 'b01;
                     end else begin
                         mult_start <= 1;
                         mult_mode <= 'b00;
@@ -129,7 +135,7 @@ module control(
                 `UMULH: begin
                     if (multiplier_done) begin
                         reg_write <= 1;
-                        execute_result_loc <= 1;
+                        execute_result_loc <= 'b01;
                     end else begin
                         mult_start <= 1;
                         mult_mode <= 'b01;
@@ -139,7 +145,7 @@ module control(
                 `SMULH: begin
                     if (multiplier_done) begin
                         reg_write <= 1;
-                        execute_result_loc <= 1;
+                        execute_result_loc <= 'b01;
                     end 
                     else begin
                         mult_start <= 1;
@@ -151,6 +157,21 @@ module control(
                     readreg2_loc <= 1;
                     reg_write <= 1;
                     alu_src <= 1;
+                end
+                `DIV: begin
+                    if (divider_done) begin
+                        reg_write <= 1;
+                        execute_result_loc <= 'b10;
+                    end
+                    else begin
+                        div_start <= 1;
+                        branch_op <= `BCOND_OP_NOINC;
+                    end
+                    
+                    if (shamt == `UDIV_SHAMT)
+                        div_mode <= 0;
+                    else if (shamt == `SDIV_SHAMT)
+                        div_mode <= 1;
                 end
             endcase
             
