@@ -23,7 +23,7 @@ void main() {
 
     long remainder = dividend;
 
-    while (remainder > 0) {
+    while (remainder >= 0) {
         remainder -= divisor;
         quotient++;
     }

@@ -12,8 +12,8 @@
 36:  ADDI X14, XZR, #1     ; divisorNegative
 40:  SUB  X10, XZR, X10    ; two's compliment
 44:  ADD  X12, X9,  XZR    ; remainder
-48:  CMPI X12, #0          ; begin while loop - condition: remainder > 0
-52:  B.LE #4
+48:  CMPI X12, #0          ; begin while loop - condition: remainder >= 0
+52:  B.LT #4
 56:  SUB  X12, X12, X10    ; decrease remainder by divisor
 60:  ADDI X11, X11, #1     ; increase quotient by 1
 64:  B    #-4

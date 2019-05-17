@@ -3,149 +3,544 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="divider_tb_behav.wdb" id="1">
+      <db_ref path="datapath_behav.wdb" id="1">
          <top_modules>
-            <top_module name="divider_tb" />
+            <top_module name="datapath" />
             <top_module name="glbl" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="165312500fs"></ZoomStartTime>
-      <ZoomEndTime time="234791667fs"></ZoomEndTime>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1006000000fs"></ZoomEndTime>
       <Cursor1Time time="189949000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="270"></NameColumnWidth>
-      <ValueColumnWidth column_width="289"></ValueColumnWidth>
+      <ValueColumnWidth column_width="285"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="27" />
+   <WVObjectSize size="6" />
    <wvobject type="group" fp_name="group31">
       <obj_property name="label">Top Level</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/datapath/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/reset">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group32">
       <obj_property name="label">Fetch</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/datapath/Fetch/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Fetch/read_clk">
+         <obj_property name="ElementShortName">read_clk</obj_property>
+         <obj_property name="ObjectShortName">read_clk</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Fetch/pc_src">
+         <obj_property name="ElementShortName">pc_src[1:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_src[1:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Fetch/pc">
+         <obj_property name="ElementShortName">pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">pc[63:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Fetch/instruction">
+         <obj_property name="ElementShortName">instruction[31:0]</obj_property>
+         <obj_property name="ObjectShortName">instruction[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Fetch/branch_target">
+         <obj_property name="ElementShortName">branch_target[63:0]</obj_property>
+         <obj_property name="ObjectShortName">branch_target[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Fetch/alu_result">
+         <obj_property name="ElementShortName">alu_result[63:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_result[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Fetch/incremented_pc">
+         <obj_property name="ElementShortName">incremented_pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">incremented_pc[63:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Fetch/new_pc">
+         <obj_property name="ElementShortName">new_pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">new_pc[63:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group33">
       <obj_property name="label">Decode</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/datapath/Decode/read_clk">
+         <obj_property name="ElementShortName">read_clk</obj_property>
+         <obj_property name="ObjectShortName">read_clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Decode/write_clk">
+         <obj_property name="ElementShortName">write_clk</obj_property>
+         <obj_property name="ObjectShortName">write_clk</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="group120">
+         <obj_property name="label">Control Signals</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="logic" fp_name="/datapath/Decode/stall">
+            <obj_property name="ElementShortName">stall</obj_property>
+            <obj_property name="ObjectShortName">stall</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/multiplier_done">
+            <obj_property name="ElementShortName">multiplier_done</obj_property>
+            <obj_property name="ObjectShortName">multiplier_done</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/divider_done">
+            <obj_property name="ElementShortName">divider_done</obj_property>
+            <obj_property name="ObjectShortName">divider_done</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/mult_start">
+            <obj_property name="ElementShortName">mult_start</obj_property>
+            <obj_property name="ObjectShortName">mult_start</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/div_start">
+            <obj_property name="ElementShortName">div_start</obj_property>
+            <obj_property name="ObjectShortName">div_start</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/mem_read">
+            <obj_property name="ElementShortName">mem_read</obj_property>
+            <obj_property name="ObjectShortName">mem_read</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/mem_write">
+            <obj_property name="ElementShortName">mem_write</obj_property>
+            <obj_property name="ObjectShortName">mem_write</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/alu_src">
+            <obj_property name="ElementShortName">alu_src</obj_property>
+            <obj_property name="ObjectShortName">alu_src</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/reg_write">
+            <obj_property name="ElementShortName">reg_write</obj_property>
+            <obj_property name="ObjectShortName">reg_write</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/update_sreg">
+            <obj_property name="ElementShortName">update_sreg</obj_property>
+            <obj_property name="ObjectShortName">update_sreg</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/div_mode">
+            <obj_property name="ElementShortName">div_mode</obj_property>
+            <obj_property name="ObjectShortName">div_mode</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/readreg2_loc">
+            <obj_property name="ElementShortName">readreg2_loc</obj_property>
+            <obj_property name="ObjectShortName">readreg2_loc</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Decode/write_reg_src">
+            <obj_property name="ElementShortName">write_reg_src</obj_property>
+            <obj_property name="ObjectShortName">write_reg_src</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Decode/mem_to_reg">
+            <obj_property name="ElementShortName">mem_to_reg[1:0]</obj_property>
+            <obj_property name="ObjectShortName">mem_to_reg[1:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Decode/mult_mode">
+            <obj_property name="ElementShortName">mult_mode[1:0]</obj_property>
+            <obj_property name="ObjectShortName">mult_mode[1:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Decode/branch_op">
+            <obj_property name="ElementShortName">branch_op[2:0]</obj_property>
+            <obj_property name="ObjectShortName">branch_op[2:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Decode/execute_result_loc">
+            <obj_property name="ElementShortName">execute_result_loc[1:0]</obj_property>
+            <obj_property name="ObjectShortName">execute_result_loc[1:0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Decode/alu_op">
+            <obj_property name="ElementShortName">alu_op[3:0]</obj_property>
+            <obj_property name="ObjectShortName">alu_op[3:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/write_data">
+         <obj_property name="ElementShortName">write_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">write_data[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/extended_instruction">
+         <obj_property name="ElementShortName">extended_instruction[63:0]</obj_property>
+         <obj_property name="ObjectShortName">extended_instruction[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/opcode">
+         <obj_property name="ElementShortName">opcode[10:0]</obj_property>
+         <obj_property name="ObjectShortName">opcode[10:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/read_data1">
+         <obj_property name="ElementShortName">read_data1[63:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data1[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/read_data2">
+         <obj_property name="ElementShortName">read_data2[63:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data2[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/rm">
+         <obj_property name="ElementShortName">rm[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rm[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/rn">
+         <obj_property name="ElementShortName">rn[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rn[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/rd">
+         <obj_property name="ElementShortName">rd[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rd[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/address">
+         <obj_property name="ElementShortName">address[8:0]</obj_property>
+         <obj_property name="ObjectShortName">address[8:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/shamt">
+         <obj_property name="ElementShortName">shamt[5:0]</obj_property>
+         <obj_property name="ObjectShortName">shamt[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/read_reg2">
+         <obj_property name="ElementShortName">read_reg2[4:0]</obj_property>
+         <obj_property name="ObjectShortName">read_reg2[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/write_reg">
+         <obj_property name="ElementShortName">write_reg[4:0]</obj_property>
+         <obj_property name="ObjectShortName">write_reg[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Decode/register_memory/register_mem">
+         <obj_property name="ElementShortName">register_mem[31:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">register_mem[31:0][63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group34">
       <obj_property name="label">Execute</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/datapath/Execute/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/pc">
+         <obj_property name="ElementShortName">pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">pc[63:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/opcode">
+         <obj_property name="ElementShortName">opcode[10:0]</obj_property>
+         <obj_property name="ObjectShortName">opcode[10:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/sign_extended_instr">
+         <obj_property name="ElementShortName">sign_extended_instr[63:0]</obj_property>
+         <obj_property name="ObjectShortName">sign_extended_instr[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/read_data1">
+         <obj_property name="ElementShortName">read_data1[63:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data1[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/read_data2">
+         <obj_property name="ElementShortName">read_data2[63:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data2[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/branch_alu_result">
+         <obj_property name="ElementShortName">branch_alu_result[63:0]</obj_property>
+         <obj_property name="ObjectShortName">branch_alu_result[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/alu_result">
+         <obj_property name="ElementShortName">alu_result[63:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_result[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/shifted_instr">
+         <obj_property name="ElementShortName">shifted_instr[63:0]</obj_property>
+         <obj_property name="ObjectShortName">shifted_instr[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/alu_input_b">
+         <obj_property name="ElementShortName">alu_input_b[63:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_input_b[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/alu_result_buff">
+         <obj_property name="ElementShortName">alu_result_buff[63:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_result_buff[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/multiplier_result">
+         <obj_property name="ElementShortName">multiplier_result[63:0]</obj_property>
+         <obj_property name="ObjectShortName">multiplier_result[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Execute/divider_result">
+         <obj_property name="ElementShortName">divider_result[63:0]</obj_property>
+         <obj_property name="ObjectShortName">divider_result[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
       <wvobject type="group" fp_name="group4576">
          <obj_property name="label">Multiplier</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="logic" fp_name="/datapath/Execute/multiplier/clk">
+            <obj_property name="ElementShortName">clk</obj_property>
+            <obj_property name="ObjectShortName">clk</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/multiplier/reset">
+            <obj_property name="ElementShortName">reset</obj_property>
+            <obj_property name="ObjectShortName">reset</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/multiplier/start">
+            <obj_property name="ElementShortName">start</obj_property>
+            <obj_property name="ObjectShortName">start</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/multiplier/multiplicand">
+            <obj_property name="ElementShortName">multiplicand[63:0]</obj_property>
+            <obj_property name="ObjectShortName">multiplicand[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/multiplier/multiplier">
+            <obj_property name="ElementShortName">multiplier[63:0]</obj_property>
+            <obj_property name="ObjectShortName">multiplier[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/multiplier/mult_mode">
+            <obj_property name="ElementShortName">mult_mode[1:0]</obj_property>
+            <obj_property name="ObjectShortName">mult_mode[1:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/multiplier/result">
+            <obj_property name="ElementShortName">result[63:0]</obj_property>
+            <obj_property name="ObjectShortName">result[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/multiplier/done">
+            <obj_property name="ElementShortName">done</obj_property>
+            <obj_property name="ObjectShortName">done</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/multiplier/stall">
+            <obj_property name="ElementShortName">stall</obj_property>
+            <obj_property name="ObjectShortName">stall</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/multiplier/product">
+            <obj_property name="ElementShortName">product[128:0]</obj_property>
+            <obj_property name="ObjectShortName">product[128:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/multiplier/bit">
+            <obj_property name="ElementShortName">bit[32:0]</obj_property>
+            <obj_property name="ObjectShortName">bit[32:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/multiplier/carry">
+            <obj_property name="ElementShortName">carry</obj_property>
+            <obj_property name="ObjectShortName">carry</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/multiplier/multsx">
+            <obj_property name="ElementShortName">multsx[64:0]</obj_property>
+            <obj_property name="ObjectShortName">multsx[64:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group168">
+         <obj_property name="label">Divider</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/clk">
+            <obj_property name="ElementShortName">clk</obj_property>
+            <obj_property name="ObjectShortName">clk</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/reset">
+            <obj_property name="ElementShortName">reset</obj_property>
+            <obj_property name="ObjectShortName">reset</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/start">
+            <obj_property name="ElementShortName">start</obj_property>
+            <obj_property name="ObjectShortName">start</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/is_signed">
+            <obj_property name="ElementShortName">is_signed</obj_property>
+            <obj_property name="ObjectShortName">is_signed</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/dividend">
+            <obj_property name="ElementShortName">dividend[63:0]</obj_property>
+            <obj_property name="ObjectShortName">dividend[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/divisor">
+            <obj_property name="ElementShortName">divisor[63:0]</obj_property>
+            <obj_property name="ObjectShortName">divisor[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/quotient">
+            <obj_property name="ElementShortName">quotient[63:0]</obj_property>
+            <obj_property name="ObjectShortName">quotient[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/remainder">
+            <obj_property name="ElementShortName">remainder[63:0]</obj_property>
+            <obj_property name="ObjectShortName">remainder[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/stall">
+            <obj_property name="ElementShortName">stall</obj_property>
+            <obj_property name="ObjectShortName">stall</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/done">
+            <obj_property name="ElementShortName">done</obj_property>
+            <obj_property name="ObjectShortName">done</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/is_signed_b">
+            <obj_property name="ElementShortName">is_signed_b</obj_property>
+            <obj_property name="ObjectShortName">is_signed_b</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/i">
+            <obj_property name="ElementShortName">i[32:0]</obj_property>
+            <obj_property name="ObjectShortName">i[32:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/active">
+            <obj_property name="ElementShortName">active</obj_property>
+            <obj_property name="ObjectShortName">active</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/sign_dividend">
+            <obj_property name="ElementShortName">sign_dividend</obj_property>
+            <obj_property name="ObjectShortName">sign_dividend</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/datapath/Execute/divider/sign_divisor">
+            <obj_property name="ElementShortName">sign_divisor</obj_property>
+            <obj_property name="ObjectShortName">sign_divisor</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/dividend_b">
+            <obj_property name="ElementShortName">dividend_b[63:0]</obj_property>
+            <obj_property name="ObjectShortName">dividend_b[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/divisor_b">
+            <obj_property name="ElementShortName">divisor_b[63:0]</obj_property>
+            <obj_property name="ObjectShortName">divisor_b[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/datapath/Execute/divider/quotient_b">
+            <obj_property name="ElementShortName">quotient_b[127:0]</obj_property>
+            <obj_property name="ObjectShortName">quotient_b[127:0]</obj_property>
+         </wvobject>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group35">
       <obj_property name="label">Memory</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/datapath/Memory/read_clk">
+         <obj_property name="ElementShortName">read_clk</obj_property>
+         <obj_property name="ObjectShortName">read_clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Memory/write_clk">
+         <obj_property name="ElementShortName">write_clk</obj_property>
+         <obj_property name="ObjectShortName">write_clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Memory/zero">
+         <obj_property name="ElementShortName">zero</obj_property>
+         <obj_property name="ObjectShortName">zero</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Memory/negative">
+         <obj_property name="ElementShortName">negative</obj_property>
+         <obj_property name="ObjectShortName">negative</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Memory/overflow">
+         <obj_property name="ElementShortName">overflow</obj_property>
+         <obj_property name="ObjectShortName">overflow</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Memory/carry">
+         <obj_property name="ElementShortName">carry</obj_property>
+         <obj_property name="ObjectShortName">carry</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Memory/mem_read">
+         <obj_property name="ElementShortName">mem_read</obj_property>
+         <obj_property name="ObjectShortName">mem_read</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/datapath/Memory/mem_write">
+         <obj_property name="ElementShortName">mem_write</obj_property>
+         <obj_property name="ObjectShortName">mem_write</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Memory/address">
+         <obj_property name="ElementShortName">address[63:0]</obj_property>
+         <obj_property name="ObjectShortName">address[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Memory/write_data">
+         <obj_property name="ElementShortName">write_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">write_data[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Memory/branch_op">
+         <obj_property name="ElementShortName">branch_op[2:0]</obj_property>
+         <obj_property name="ObjectShortName">branch_op[2:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Memory/rt">
+         <obj_property name="ElementShortName">rt[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rt[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Memory/read_data">
+         <obj_property name="ElementShortName">read_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Memory/write_data_modified">
+         <obj_property name="ElementShortName">write_data_modified[63:0]</obj_property>
+         <obj_property name="ObjectShortName">write_data_modified[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group36">
       <obj_property name="label">Writeback</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/divider_tb/UUT/clk">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/divider_tb/UUT/reset">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/divider_tb/UUT/start">
-      <obj_property name="ElementShortName">start</obj_property>
-      <obj_property name="ObjectShortName">start</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/dividend">
-      <obj_property name="ElementShortName">dividend[15:0]</obj_property>
-      <obj_property name="ObjectShortName">dividend[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/divisor">
-      <obj_property name="ElementShortName">divisor[15:0]</obj_property>
-      <obj_property name="ObjectShortName">divisor[15:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/quotient">
-      <obj_property name="ElementShortName">quotient[15:0]</obj_property>
-      <obj_property name="ObjectShortName">quotient[15:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/remainder">
-      <obj_property name="ElementShortName">remainder[15:0]</obj_property>
-      <obj_property name="ObjectShortName">remainder[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/divider_tb/UUT/stall">
-      <obj_property name="ElementShortName">stall</obj_property>
-      <obj_property name="ObjectShortName">stall</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/divider_tb/UUT/done">
-      <obj_property name="ElementShortName">done</obj_property>
-      <obj_property name="ObjectShortName">done</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/i">
-      <obj_property name="ElementShortName">i[8:0]</obj_property>
-      <obj_property name="ObjectShortName">i[8:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/divider_tb/UUT/active">
-      <obj_property name="ElementShortName">active</obj_property>
-      <obj_property name="ObjectShortName">active</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/dividend_b">
-      <obj_property name="ElementShortName">dividend_b[15:0]</obj_property>
-      <obj_property name="ObjectShortName">dividend_b[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/divisor_b">
-      <obj_property name="ElementShortName">divisor_b[15:0]</obj_property>
-      <obj_property name="ObjectShortName">divisor_b[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/quotient_b">
-      <obj_property name="ElementShortName">quotient_b[31:0]</obj_property>
-      <obj_property name="ObjectShortName">quotient_b[31:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/step1">
-      <obj_property name="ElementShortName">step1[15:0]</obj_property>
-      <obj_property name="ObjectShortName">step1[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/step2">
-      <obj_property name="ElementShortName">step2[15:0]</obj_property>
-      <obj_property name="ObjectShortName">step2[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/step4">
-      <obj_property name="ElementShortName">step4[15:0]</obj_property>
-      <obj_property name="ObjectShortName">step4[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/fucking_work_pls">
-      <obj_property name="ElementShortName">fucking_work_pls[31:0]</obj_property>
-      <obj_property name="ObjectShortName">fucking_work_pls[31:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/part1">
-      <obj_property name="ElementShortName">part1[15:0]</obj_property>
-      <obj_property name="ObjectShortName">part1[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/part2">
-      <obj_property name="ElementShortName">part2[15:0]</obj_property>
-      <obj_property name="ObjectShortName">part2[15:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/divider_tb/UUT/ihatemylife">
-      <obj_property name="ElementShortName">ihatemylife[31:0]</obj_property>
-      <obj_property name="ObjectShortName">ihatemylife[31:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/datapath/Writeback/alu_result">
+         <obj_property name="ElementShortName">alu_result[63:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_result[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Writeback/read_data">
+         <obj_property name="ElementShortName">read_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Writeback/incremented_pc">
+         <obj_property name="ElementShortName">incremented_pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">incremented_pc[63:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Writeback/read_data2">
+         <obj_property name="ElementShortName">read_data2[63:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data2[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Writeback/mem_to_reg">
+         <obj_property name="ElementShortName">mem_to_reg[1:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_to_reg[1:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Writeback/write_back">
+         <obj_property name="ElementShortName">write_back[63:0]</obj_property>
+         <obj_property name="ObjectShortName">write_back[63:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/datapath/Writeback/mov_shift">
+         <obj_property name="ElementShortName">mov_shift[6:0]</obj_property>
+         <obj_property name="ObjectShortName">mov_shift[6:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>
