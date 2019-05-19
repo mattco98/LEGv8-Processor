@@ -4,10 +4,11 @@
 
 
 module datapath;
-    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_DIVISION_SIGNED;
-    parameter REG_FILE         = `REGISTER_FILE_DIVISION_SIGNED;
-    parameter RAM_FILE         = `RAM_FILE_DIVISION_SIGNED;
-    parameter CYCLES           = 100;
+    parameter INSTRUCTION_FILE = `INSTRUCTION_FILE_FP_ADD;
+    parameter REG_FILE         = `REGISTER_FILE;
+    parameter FP_REG_FILE      = `FP_REGISTER_FILE_FP_ADD;
+    parameter RAM_FILE         = `RAM_FILE;
+    parameter CYCLES           = 5;
 
     // Clocks
     wire clk;
@@ -48,6 +49,9 @@ module datapath;
     wire       mult_start;
     wire       div_start;
     wire       div_mode;
+    wire       fp;
+    wire       double;
+    wire [2:0] fpu_op;
     wire [2:0] branch_op;
     wire [1:0] mem_to_reg;
     wire [1:0] mult_mode;
@@ -83,7 +87,7 @@ module datapath;
         .incremented_pc(incremented_pc)
     );
     
-    Decode #(.PATH(REG_FILE)) Decode(
+    Decode #(.INT_PATH(REG_FILE), .FP_PATH(FP_REG_FILE)) Decode(
         .read_clk(clk_delayed_2),
         .write_clk(clk_delayed_6), 
         .reset(reset),
@@ -108,7 +112,10 @@ module datapath;
         .mult_start(mult_start),
         .div_start(div_start),
         .div_mode(div_mode),
-        .divider_done(divider_done)
+        .divider_done(divider_done),
+        .fp(fp),
+        .fpu_op(fpu_op),
+        .double(double)
     );
     
     Execute Execute(
@@ -135,7 +142,10 @@ module datapath;
         .mult_mode(mult_mode),
         .divider_done(divider_done),
         .div_mode(div_mode),
-        .div_start(div_start)
+        .div_start(div_start),
+        .fp(fp),
+        .fpu_op(fpu_op),
+        .double(double)
     );
     
     Memory #(.PATH(RAM_FILE)) Memory(

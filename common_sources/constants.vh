@@ -41,16 +41,8 @@
 `define DIV     11'b10011010110
 `define EOR     11'b11001010000
 `define EORI    11'b1101001000?
-`define FMULS   11'b00011110001
-`define FDIVS   11'b00011110001
-`define FCMPS   11'b00011110001
-`define FADDS   11'b00011110001
-`define FSUBS   11'b00011110001
-`define FMULD   11'b00011110011
-`define FDIVD   11'b00011110011
-`define FCMPD   11'b00011110011
-`define FADDD   11'b00011110011
-`define FSUBD   11'b00011110011
+`define FS      11'b00011110001 // Floating point single precision
+`define FD      11'b00011110011 // Floating point double precision
 `define LDURS   11'b10111100010
 `define STURS   11'b10111100000
 `define LDURD   11'b11111100010
@@ -123,4 +115,13 @@
 `define BCOND_OP_NZERO   3'b100
 `define BCOND_OP_ALU     3'b101
 `define BCOND_OP_NOINC   3'b110
+
+/////////////
+// FPU OPS //
+/////////////
+
+`define FPU_ADD 3'b001
+`define FPU_SUB 3'b010
+`define FPU_MUL 3'b011
+`define FPU_DIV 3'b100
 

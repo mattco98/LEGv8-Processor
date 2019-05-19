@@ -13,7 +13,7 @@ module sign_extender(
                 out <= {{(`WORD-6){instruction[15]}}, instruction[15:10]};
             `ADDI, `ANDI, `EORI, `ORRI, `SUBI, `CMPI:
                 out <= {{(`WORD-12){instruction[21]}}, instruction[21:10]};
-            `LDUR, `STUR, `LDA:
+            `LDUR, `LDURS, `LDURD, `STUR, `STURS, `STURD, `LDA:
                 out <= {{(`WORD-9){instruction[20]}}, instruction[20:12]};
              `CBZ, `CBNZ, `BCOND:
                 out <= {{(`WORD-19){instruction[23]}}, instruction[23:5]};

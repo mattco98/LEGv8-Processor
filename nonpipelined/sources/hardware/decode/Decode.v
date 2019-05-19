@@ -3,13 +3,15 @@
 `include "files.vh"
 
 
-module Decode #(parameter PATH=`REGISTER_FILE) (
+module Decode #(parameter INT_PATH=`REGISTER_FILE, FP_PATH=`FP_REGISTER_FILE) (
     input                   read_clk,
     input                   write_clk,
     input                   reset,
     input                   stall, 
     input                   multiplier_done,
     input                   divider_done,
+    input                   fp, // floating point
+    input                   double,
     input  [`INSTR_LEN-1:0] instruction,
     input  [`WORD-1:0]      write_data,
     
@@ -29,7 +31,8 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
     output [1:0]            mem_to_reg,
     output [1:0]            mult_mode,
     output                  div_mode,
-    output [3:0]            alu_op
+    output [3:0]            alu_op,
+    output [2:0]            fpu_op
 );
 
     wire [4:0] rm;
@@ -73,7 +76,10 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
         .mult_start(mult_start),
         .div_start(div_start),
         .div_mode(div_mode),
-        .divider_done(divider_done)
+        .divider_done(divider_done),
+        .fpu_op(fpu_op),
+        .fp(fp),
+        .double(double)
     );
     
     mux2 #(.SIZE(5)) mux2_read_reg2(
@@ -90,17 +96,49 @@ module Decode #(parameter PATH=`REGISTER_FILE) (
         .out(write_reg)
     );
     
-    register_memory #(.PATH(PATH)) register_memory(
+    wire [`WORD-1:0] read_data1_int,
+                     read_data2_int,
+                     read_data1_fp,
+                     read_data2_fp;
+    
+    register_memory #(.PATH(INT_PATH)) register_memory(
         .read_clk(read_clk),
         .write_clk(write_clk),
         .reset(reset),
-        .reg_write(reg_write),
+        .reg_write(reg_write && !fp),
         .read_reg1(rn),
         .read_reg2(read_reg2),
         .write_reg(write_reg),
         .write_data(write_data),
-        .read_data1(read_data1),
-        .read_data2(read_data2)
+        .read_data1(read_data1_int),
+        .read_data2(read_data2_int)
+    );
+    
+    register_memory #(.PATH(FP_PATH)) fp_register_memory(
+        .read_clk(read_clk),
+        .write_clk(write_clk),
+        .reset(reset),
+        .read_reg1(rn),
+        .read_reg2(read_reg2),
+        .reg_write(reg_write && fp),
+        .write_reg(write_reg),
+        .write_data(write_data),
+        .read_data1(read_data1_fp),
+        .read_data2(read_data2_fp)
+    );
+    
+    mux2 #(.SIZE(`WORD)) read_data1_mux(
+        .a(read_data1_int),
+        .b(read_data1_fp),
+        .control(fp),
+        .out(read_data1)
+    );
+
+    mux2 #(.SIZE(`WORD)) read_data2_mux(
+        .a(read_data2_int),
+        .b(read_data2_fp),
+        .control(fp),
+        .out(read_data2)
     );
     
     sign_extender sign_extender(

@@ -18,6 +18,9 @@ module Execute(
     input  [3:0]       alu_op,
     input  [1:0]       mult_mode,
     input              div_mode,
+    input              fp,
+    input              double,
+    input  [2:0]       fpu_op,
     output [`WORD-1:0] branch_alu_result,
     output [`WORD-1:0] alu_result,
     output             zero, 
@@ -36,6 +39,7 @@ module Execute(
     // ALU
     wire [`WORD-1:0] alu_input_b;
     wire [`WORD-1:0] alu_result_buff;
+    wire [`WORD-1:0] fpu_result_buff;
     wire             negative_internal;
     wire             zero_internal; 
     wire             carry_internal;
@@ -48,6 +52,14 @@ module Execute(
         .b(sign_extended_instr),
         .control(alu_src),
         .out(alu_input_b)
+    );
+    
+    fpu fpu(
+        .a(read_data1),
+        .b(alu_input_b),
+        .fpu_op(fpu_op),
+        .double(double),
+        .result(fpu_result_buff)
     );
     
     alu alu(
@@ -101,10 +113,11 @@ module Execute(
         .is_signed(div_mode)
     );
     
-    mux3 mux3_alu_result(
+    mux4 mux4_alu_result(
         .a(alu_result_buff),
         .b(multiplier_result),
         .c(divider_result),
+        .d(fpu_result_buff),
         .control(execute_result_loc),
         .out(alu_result)
     );

@@ -12,7 +12,10 @@ module control(
     output reg        write_reg_src,
     output reg        reg_write,
     output reg        alu_src,
-    output reg [3:0]  alu_op, 
+    output reg        fp,
+    output reg        double,
+    output reg [3:0]  alu_op,
+    output reg [2:0]  fpu_op, 
     output reg [1:0]  execute_result_loc,
     output reg        update_sreg, 
     output reg        mult_start,
@@ -41,6 +44,9 @@ module control(
         mem_to_reg <= 'b00;
         div_start <= 0;
         div_mode <= 0;
+        fp <= 0;
+        double <= 0;
+        fpu_op <= 'b0000;
         
         // Set bits to 1
         if (~stall) begin
@@ -173,6 +179,49 @@ module control(
                     else if (shamt == `SDIV_SHAMT)
                         div_mode <= 1;
                 end
+                `FS: begin
+                    fp <= 1;
+                    reg_write <= 1;
+                    execute_result_loc <= 2'b11;
+                end
+                `FD: begin
+                    fp <= 1;
+                    reg_write <= 1;
+                    double <= 1;
+                    execute_result_loc <= 2'b11;
+                end
+                `LDURS: begin
+                    fp <= 1;
+                    reg_write <= 1;
+                    alu_src <= 1;
+                    mem_read <= 1;
+                    mem_to_reg <= 'b01;
+                    execute_result_loc <= 2'b11;
+                end
+                `LDURD: begin
+                    fp <= 1;
+                    double <= 1;
+                    reg_write <= 1;
+                    alu_src <= 1;
+                    mem_read <= 1;
+                    mem_to_reg <= 'b01;
+                    execute_result_loc <= 2'b11;
+                end
+                `STURS: begin
+                    fp <= 1; 
+                    readreg2_loc <= 1;
+                    alu_src <= 1;
+                    mem_write <= 1;
+                    execute_result_loc <= 2'b11;
+                end
+                `STURD: begin
+                    fp <= 1; 
+                    double <= 1;
+                    readreg2_loc <= 1;
+                    alu_src <= 1;
+                    mem_write <= 1;
+                    execute_result_loc <= 2'b11;
+                end
             endcase
             
             // Set alu_op (cleaner in its own case statement)
@@ -187,6 +236,20 @@ module control(
                     alu_op <= `ALU_LSR;
                 default:
                     alu_op <= {1'b0, opcode[9], opcode[3], opcode[8]};
+            endcase
+            
+            // Set fpu_op
+            casez(shamt)
+                `FMULS_SHAMT, `FMULD_SHAMT: 
+                    fpu_op <= `FPU_MUL;
+                `FDIVS_SHAMT, `FDIVD_SHAMT: 
+                    fpu_op <= `FPU_DIV;
+                `FCMPS_SHAMT, `FCMPD_SHAMT:
+                    fpu_op <= `FPU_SUB;
+                `FADDS_SHAMT, `FADDD_SHAMT: 
+                    fpu_op <= `FPU_ADD;
+                `FSUBS_SHAMT, `FSUBD_SHAMT: 
+                    fpu_op <= `FPU_SUB;
             endcase
         end 
         else
