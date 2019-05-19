@@ -14,23 +14,23 @@ module fadders(
     wire [7:0]  a_exp;
     wire [7:0]  b_exp;
     reg  [7:0]  out_exp;
-    wire [278:0] a_mant;
-    wire [278:0] b_mant;
-    reg  [279:0] out_mant;
-    reg  [278:0] a_mant_norm;
-    reg  [278:0] b_mant_norm;
+    wire [47:0] a_mant;
+    wire [47:0] b_mant;
+    reg  [48:0] out_mant;
+    reg  [47:0] a_mant_norm;
+    reg  [47:0] b_mant_norm;
     
     assign a_sign = a[31];
     assign b_sign = b[31];
     assign a_exp = a[30-:8];
     assign b_exp = b[30-:8];
-    assign a_mant = {1'b1, a[0+:23], 255'b0};
-    assign b_mant = {1'b1, b[0+:23], 255'b0};
+    assign a_mant = {1'b1, a[0+:23], 24'b0};
+    assign b_mant = {1'b1, b[0+:23], 24'b0};
     
     reg  [7:0]  norm_exp_in;
     wire [7:0]  norm_exp_out;
-    reg  [278:0] norm_mant_in;
-    wire [278:0] norm_mant_out;
+    reg  [47:0] norm_mant_in;
+    wire [47:0] norm_mant_out;
     
     normalizers normalizers(
         .exp_in(norm_exp_in),
@@ -39,7 +39,7 @@ module fadders(
         .mant_out(norm_mant_out)
     );
     
-    assign out = {out_sign, norm_exp_out, norm_mant_out[277-:23]};
+    assign out = {out_sign, norm_exp_out, norm_mant_out[46-:23]};
     
     always @* begin
         if (a_exp == 'b0 && a_mant == 'b0) begin
@@ -92,17 +92,17 @@ module fadders(
                 out_mant = b_mant_norm - a_mant_norm;
         end
         
-        if (out_mant[279]) begin
+        if (out_mant[48]) begin
             out_exp = out_exp + 1;
             out_mant = out_mant >> 1;
         end
         
         if (out_mant != 'b0) begin
-            norm_mant_in = out_mant[278:0];
+            norm_mant_in = out_mant[47:0];
             norm_exp_in  = out_exp;
         end
         else begin
-            norm_mant_in = {1'b1, 277'b0};
+            norm_mant_in = {2'b01, 46'b0};
             norm_exp_in =  out_exp;
         end
     end
