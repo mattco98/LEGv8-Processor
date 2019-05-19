@@ -67,7 +67,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [x] CMPI
 - [x] LDA
 - [x] MOV
-- [ ] FADDS
+- [x] FADDS
 - [ ] FADDD
 - [ ] FCMPS
 - [ ] FCMPD
@@ -75,7 +75,7 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] FDIVD
 - [ ] FMULS
 - [ ] FMULD
-- [ ] FSUBS
+- [x] FSUBS
 - [ ] FSUBD
 - [ ] LDURS
 - [ ] LDURD
