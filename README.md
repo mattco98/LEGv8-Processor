@@ -86,3 +86,9 @@ Initially, this project supported eight instructions: `ADD`, `SUB`, `AND`, `ORR`
 - [ ] STURD
 - [x] UDIV
 - [x] UMULH
+
+## Acknowledgements
+
+As this project was primarily about learning, I took a lot of inspiration from other similar projects. They are listed below:
+
+- https://github.com/danshanley/FPU - Huge help on some FPU algorithms which I couldn't quite figure out myself.

@@ -28,3 +28,8 @@
 100: SUB  X11, XZR, X11
 104: STUR X11, [X22, #16]  ; Store quotient and remainder
 108: STUR X12, [X22, #24]
+
+
+ADDI <TARGET>, <REG1>, <VALUE>
+
+ADDI X12, X8, #0
